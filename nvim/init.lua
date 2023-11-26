@@ -56,7 +56,9 @@ require'lazy'.setup {
         },
         indent = { enable = true },
       }
-      vim.keymap.set('n', '<leader>th', '<cmd>TSToggle highlight<cr>')
+      vim.keymap.set('n', '<leader>th', function ()
+        vim.cmd.TSBufToggle('highlight')
+      end)
     end,
   },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.4',
@@ -72,11 +74,8 @@ require'lazy'.setup {
     },
   },
   { 'mbbill/undotree',
-    config = function ()
-      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-    end,
     keys = {
-      { '<leader>u' },
+      { '<leader>u', function () vim.cmd.UndotreeToggle() end },
     },
   },
 }
