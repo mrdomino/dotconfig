@@ -1,7 +1,7 @@
 [user]
 	name = Jōshin
 	email = git@wholezero.org
-	signingkey = /Users/joshin/.ssh/joshin.pub
+	signingkey = ~/.ssh/joshin.pub
 [commit]
 	gpgsign = true
 [gpg]
