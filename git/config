@@ -1,0 +1,21 @@
+[user]
+	name = Jōshin
+	email = git@wholezero.org
+	signingkey = /Users/joshin/.ssh/joshin.pub
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+[alias]
+	lg = log --graph --decorate
+	lga = log --graph --decorate --all
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[diff "lockb"]
+	textconv = bun
+	binary = true
+[init]
+	defaultBranch = main
