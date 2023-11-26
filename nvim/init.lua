@@ -1,4 +1,4 @@
-﻿vim.cmd('syntax off')
+﻿vim.cmd[[syntax off]]
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.list = true
@@ -24,36 +24,64 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require'lazy'.setup {
+  { 'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd[[colorscheme tokyonight-night]]
+    end,
+  },
   { 'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function ()
       require'nvim-treesitter.configs'.setup {
         ensure_installed = {
-          "bash",
-          "beancount",
-          "c",
-          "cpp",
-          "css",
-          "git_rebase",
-          "gitcommit",
-          "go",
-          "hoon",
-          "html",
-          "javascript",
-          "lua",
-          "python",
-          "ruby",
-          "rust",
-          "tsx",
-          "typescript",
-          "vim",
+          'bash',
+          'beancount',
+          'c',
+          'cpp',
+          'css',
+          'git_rebase',
+          'gitcommit',
+          'go',
+          'hoon',
+          'html',
+          'javascript',
+          'lua',
+          'python',
+          'ruby',
+          'rust',
+          'tsx',
+          'typescript',
+          'vim',
         },
         indent = { enable = true },
+        highlight = {
+          enable = false,
+          additional_vim_regex_highlighting = false,
+        },
       }
-    end
+      vim.keymap.set('n', '<leader>th', '<cmd>TSToggle highlight<cr>')
+    end,
   },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    config = function ()
+      local builtin = require'telescope.builtin'
+      vim.keymap.set('n', '<leader>ff', builtin.find_files)
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep)
+    end,
     dependencies = 'nvim-lua/plenary.nvim',
+    keys = {
+      { '<leader>ff' },
+      { '<leader>fg' },
+    },
   },
-  { 'mbbill/undotree' },
+  { 'mbbill/undotree',
+    config = function ()
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+    end,
+    keys = {
+      { '<leader>u' },
+    },
+  },
 }
