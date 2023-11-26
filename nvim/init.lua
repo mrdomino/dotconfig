@@ -42,6 +42,7 @@ require'lazy'.setup {
           "javascript",
           "lua",
           "python",
+          "ruby",
           "rust",
           "tsx",
           "typescript",
