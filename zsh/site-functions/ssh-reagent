@@ -1,0 +1,13 @@
+if ssh-add -l >/dev/null 2>&1; then
+  echo agent already configured >&2
+  return 0
+fi
+
+for sock in /tmp/ssh-*/agent.*(U); do
+  if env SSH_AUTH_SOCK=$sock ssh-add -l >/dev/null 2>&1; then
+    export SSH_AUTH_SOCK=$sock
+    return 0
+  fi
+done
+
+return 1
