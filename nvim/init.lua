@@ -56,10 +56,6 @@ require'lazy'.setup {
           'vim',
         },
         indent = { enable = true },
-        highlight = {
-          enable = false,
-          additional_vim_regex_highlighting = false,
-        },
       }
       vim.keymap.set('n', '<leader>th', '<cmd>TSToggle highlight<cr>')
     end,
