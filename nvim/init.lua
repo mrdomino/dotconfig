@@ -1,4 +1,4 @@
-﻿vim.cmd[[syntax off]]
+﻿vim.cmd.syntax 'off'
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.list = true
@@ -27,7 +27,7 @@ require'lazy'.setup {
   { 'folke/tokyonight.nvim',
     priority = 1000,
     config = function()
-      vim.cmd[[colorscheme tokyonight-night]]
+      vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
   { 'nvim-treesitter/nvim-treesitter',
