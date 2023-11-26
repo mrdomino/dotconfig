@@ -1,7 +1,8 @@
-vim.cmd('syntax off')
+﻿vim.cmd('syntax off')
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.list = true
+vim.opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣' }
 vim.opt.showbreak = '↪ '
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
