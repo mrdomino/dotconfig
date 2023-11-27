@@ -4,6 +4,7 @@ prompt="${prompt}%1~ %# "
 alias venv='source ~/venv/bin/activate'
 [[ dev = "$(hostname)" ]] || alias dev='ssh dev -t tmux -CC new -As0'
 alias vim=nvim
+alias vimconf='nvim ~/.config/nvim/init.lua'
 alias :q=sl
 
 bindkey -e
