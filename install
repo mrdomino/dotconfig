@@ -1,4 +1,5 @@
 #!/bin/sh
-cat > ~/.zshenv <<EOF
-export ZDOTDIR="\$HOME/.config/zsh"
-EOF
+
+[[ ! -f ~/.zshenv ]] && touch ~/.zshenv
+grep -Fx 'export ZDOTDIR="$HOME/.config/zsh"' ~/.zshenv >/dev/null || \
+  echo 'export ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
