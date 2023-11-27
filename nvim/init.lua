@@ -8,7 +8,8 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.mouse = ''
-vim.g.mapleader = '\\'
+vim.g.mapleader = ';'
+vim.g.localleader = '\\'
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -57,7 +58,7 @@ require'lazy'.setup {
         },
         indent = { enable = true },
       }
-      vim.keymap.set('n', '<leader>th', function ()
+      vim.keymap.set('n', '<localleader>th', function ()
         vim.cmd.TSBufToggle('highlight')
       end)
     end,
