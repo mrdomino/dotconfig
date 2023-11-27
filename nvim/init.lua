@@ -8,6 +8,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.mouse = ''
+vim.g.python3_host_prog = vim.fn.stdpath('data') .. '/virtualenv/bin/python3'
 vim.g.mapleader = ';'
 vim.g.localleader = '\\'
 
