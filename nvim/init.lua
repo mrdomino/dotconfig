@@ -184,4 +184,15 @@ require'lazy'.setup {
     },
     opts = {},
   },
+
+  { 'dpayne/CodeGPT.nvim',
+    cmd = 'Chat',
+    config = function ()
+      require'codegpt.config'
+    end,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+    },
+  },
 }
