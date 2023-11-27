@@ -158,4 +158,29 @@ require'lazy'.setup {
       { 'williamboman/mason-lspconfig.nvim' },
     },
   },
+
+  { 'pmizio/typescript-tools.nvim',
+    dependencies = {
+      { 'neovim/nvim-lspconfig' },
+      { 'nvim-lua/plenary.nvim' },
+    },
+    ft = {
+      'javascript',
+      'javascript.jsx',
+      'javascriptreact',
+      'typescript',
+      'typescript.tsx',
+      'typescriptreact',
+    },
+    keys = {
+      { '<leader>tsoi', '<cmd>TSToolsOrganizeImports<cr>' },
+      { '<leader>tssi', '<cmd>TSToolsSortImports<cr>' },
+      { '<leader>tsri', '<cmd>TSToolsRemoveUnusedImports<cr>' },
+      { '<leader>tsru', '<cmd>TSToolsRemoveUnused<cr>' },
+      { '<leader>tsf', '<cmd>TSToolsFixAll<cr>' },
+      { '<leader>tsd', '<cmd>TSToolsGoToSourceDefinition<cr>' },
+      { '<leader>tsr', '<cmd>TSToolsRenameFile<cr>' },
+    },
+    opts = {},
+  },
 }
