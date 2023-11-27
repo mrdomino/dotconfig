@@ -3,10 +3,7 @@ export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 export EDITOR=nvim
 
 push_path() {
-  if [[ -d "$@" ]]
-  then
-    path+=("$@")
-  fi
+  [[ -d "$@" ]] && path+=("$@")
 }
 typeset -U path
 push_path ~/bin
