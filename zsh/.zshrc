@@ -1,5 +1,8 @@
-prompt='%(?.%F{green}✔%f.%F{red}☓%(1?.. %?)%f) %F{cyan}%m%f:%1~ %# '
+prompt='%(?.%F{green}✔%f.%F{red}☓%(1?.. %?)%f) '
+[[ dev = "$(hostname)" ]] && prompt="${prompt}%F{cyan}%m%f:"
+prompt="${prompt}%1~ %# "
 alias venv='source ~/venv/bin/activate'
+[[ dev = "$(hostname)" ]] || alias dev='ssh dev -t tmux -CC new -As0'
 alias vim=nvim
 alias :q=sl
 
