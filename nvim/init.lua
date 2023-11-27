@@ -117,9 +117,7 @@ require'lazy'.setup {
 
   { 'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
-    dependencies = {
-      { 'L3MON4D3/LuaSnip' },
-    },
+    dependencies = 'L3MON4D3/LuaSnip',
     config = function ()
       local lsp_zero = require'lsp-zero'
       lsp_zero.extend_cmp()
@@ -163,15 +161,15 @@ require'lazy'.setup {
       }
     end,
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'williamboman/mason-lspconfig.nvim' },
+      'hrsh7th/cmp-nvim-lsp',
+      'williamboman/mason-lspconfig.nvim',
     },
   },
 
   { 'pmizio/typescript-tools.nvim',
     dependencies = {
-      { 'neovim/nvim-lspconfig' },
-      { 'nvim-lua/plenary.nvim' },
+      'neovim/nvim-lspconfig',
+      'nvim-lua/plenary.nvim',
     },
     ft = {
       'javascript',
