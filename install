@@ -1,0 +1,4 @@
+#!/bin/sh
+cat > ~/.zshenv <<EOF
+export ZDOTDIR="\$HOME/.config/zsh"
+EOF
