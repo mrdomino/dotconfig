@@ -8,9 +8,17 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.mouse = ''
-vim.g.python3_host_prog = vim.fn.stdpath('data') .. '/virtualenv/bin/python3'
 vim.g.mapleader = ';'
 vim.g.localleader = '\\'
+
+vim.g.python3_host_prog = vim.fn.stdpath('data') .. '/virtualenv/bin/python3'
+if not vim.loop.fs_stat(vim.g.python3_host_prog) then
+  vim.fn.system {
+    'virtualenv',
+    '--system-site-packages',
+    vim.fn.stdpath('data') .. '/virtualenv',
+  }
+end
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
