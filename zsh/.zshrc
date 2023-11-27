@@ -16,12 +16,14 @@ bindkey '' backward-kill-dir
 HISTFILE=~/.zsh_history
 HISTSIZE=20000
 SAVEHIST=10000
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt APPEND_HISTORY
+setopt hist_expire_dups_first
+setopt append_history
 
 fpath+=(~/.config/zsh/site-functions)
-autoload -Uz ssh-reagent
+[[ -d /opt/local/share/zsh/site-functions ]] && \
+  fpath+=(/opt/local/share/zsh/site-functions)
+[[ dev = "$(hostname)" ]] && autoload -Uz ssh-reagent
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d ~/.zcompdump
