@@ -1,4 +1,4 @@
-prompt='%(?.%F{green}✔%f.%F{red}☓%(1?.. %?)%f) '
+prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
 [[ dev = "$(hostname)" ]] && prompt="${prompt}%F{cyan}%m%f:"
 prompt="${prompt}%1~ %# "
 alias venv='source ~/venv/bin/activate'
