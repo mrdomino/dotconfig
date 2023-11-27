@@ -1,4 +1,4 @@
-﻿vim.cmd.syntax 'off'
+vim.cmd.syntax 'off'
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.list = true
