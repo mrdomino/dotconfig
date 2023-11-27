@@ -26,6 +26,13 @@ setopt append_history
 fpath+=(~/.config/zsh/site-functions)
 [[ -d /opt/local/share/zsh/site-functions ]] && \
   fpath+=(/opt/local/share/zsh/site-functions)
+
+[[ -x $(which rustup) ]] && {
+  local rust_toolchain=$(dirname $(dirname $(rustup which rustc)))
+  local rust_fpath=$rust_toolchain/share/zsh/site-functions
+  [[ -d $rust_fpath ]] && fpath+=($rust_fpath)
+}
+
 [[ dev = "$(hostname)" ]] && autoload -Uz ssh-reagent
 
 zstyle ':completion:*' use-cache on
