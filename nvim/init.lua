@@ -172,6 +172,16 @@ require'lazy'.setup {
   },
 
   { 'pmizio/typescript-tools.nvim',
+    config = function ()
+      require'typescript-tools'.setup {}
+      vim.keymap.set('n', '<leader>tso', '<cmd>TSToolsOrganizeImports<cr>')
+      vim.keymap.set('n', '<leader>tss', '<cmd>TSToolsSortImports<cr>')
+      vim.keymap.set('n', '<leader>tsi', '<cmd>TSToolsRemoveUnusedImports<cr>')
+      vim.keymap.set('n', '<leader>tsu', '<cmd>TSToolsRemoveUnused<cr>')
+      vim.keymap.set('n', '<leader>tsf', '<cmd>TSToolsFixAll<cr>')
+      vim.keymap.set('n', '<leader>tsd', '<cmd>TSToolsGoToSourceDefinition<cr>')
+      vim.keymap.set('n', '<leader>tsr', '<cmd>TSToolsRenameFile<cr>')
+    end,
     dependencies = {
       'neovim/nvim-lspconfig',
       'nvim-lua/plenary.nvim',
@@ -184,16 +194,6 @@ require'lazy'.setup {
       'typescript.tsx',
       'typescriptreact',
     },
-    keys = {
-      makekeymap('<leader>tso', 'TSToolsOrganizeImports'),
-      makekeymap('<leader>tss', 'TSToolsSortImports'),
-      makekeymap('<leader>tsi', 'TSToolsRemoveUnusedImports'),
-      makekeymap('<leader>tsu', 'TSToolsRemoveUnused'),
-      makekeymap('<leader>tsf', 'TSToolsFixAll'),
-      makekeymap('<leader>tsd', 'TSToolsGoToSourceDefinition'),
-      makekeymap('<leader>tsr', 'TSToolsRenameFile'),
-    },
-    opts = {},
   },
 
   { 'dpayne/CodeGPT.nvim',
