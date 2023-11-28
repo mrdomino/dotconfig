@@ -11,6 +11,9 @@ vim.opt.mouse = ''
 vim.g.mapleader = ';'
 vim.g.localleader = '\\'
 
+-- Use C-i to get an indent rather than supertab
+vim.keymap.set('i', '<C-i>', '<Tab>')
+
 vim.g.python3_host_prog = vim.fn.stdpath('data') .. '/virtualenv/bin/python3'
 if not vim.loop.fs_stat(vim.g.python3_host_prog) then
   vim.fn.system {
