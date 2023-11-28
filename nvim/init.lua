@@ -82,10 +82,13 @@ require'lazy'.setup {
   { 'nvim-telescope/telescope.nvim', tag = '0.1.4',
     cmd = 'Telescope',
     dependencies = 'nvim-lua/plenary.nvim',
-    keys = {
-      makekeymap('<leader>ff', 'Telescope find_files'),
-      makekeymap('<leader>fg', 'Telescope live_grep'),
-    },
+    keys = function ()
+      local builtin = require'telescope.builtin'
+      return {
+        { '<leader>ff', builtin.find_files, desc = 'Telescope find_files' },
+        { '<leader>fg', builtin.live_grep, desc = 'Telescope live_grep' },
+      }
+    end,
   },
   { 'mbbill/undotree',
     cmd = { 'UndotreeToggle' },
