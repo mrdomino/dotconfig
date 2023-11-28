@@ -36,10 +36,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local makekeymap = function(key, cmd)
-  return { key, '<cmd>' .. cmd .. '<cr>', desc = cmd }
-end
-
 require'lazy'.setup {
   { 'folke/tokyonight.nvim',
     priority = 1000,
@@ -75,7 +71,10 @@ require'lazy'.setup {
       }
     end,
     keys = {
-      makekeymap('<localleader>th', 'TSBufToggle highlight'),
+      { '<localleader>th',
+        function () vim.cmd.TSBufToggle 'highlight' end,
+        desc = 'Toggle highlighting'
+      },
     },
     lazy = false,
   },
@@ -85,15 +84,15 @@ require'lazy'.setup {
     keys = function ()
       local builtin = require'telescope.builtin'
       return {
-        { '<leader>ff', builtin.find_files, desc = 'Telescope find_files' },
-        { '<leader>fg', builtin.live_grep, desc = 'Telescope live_grep' },
+        { '<leader>ff', builtin.find_files, desc = 'find files' },
+        { '<leader>fg', builtin.live_grep, desc = 'live grep' },
       }
     end,
   },
   { 'mbbill/undotree',
     cmd = { 'UndotreeToggle' },
     keys = {
-      makekeymap('<leader>u', 'UndotreeToggle'),
+      { '<leader>u', vim.cmd.UndotreeToggle, desc = 'undo tree' },
     },
   },
 
