@@ -36,6 +36,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local makekeymap = function(key, cmd)
+  return { key, '<cmd>' .. cmd .. '<cr>', desc = cmd }
+end
+
 require'lazy'.setup {
   { 'folke/tokyonight.nvim',
     priority = 1000,
@@ -72,26 +76,22 @@ require'lazy'.setup {
       }
     end,
     keys = {
-      { '<localleader>th', function () vim.cmd.TSBufToggle 'highlight' end }
+      makekeymap('<localleader>th', 'TSBufToggle highlight'),
     },
     lazy = false,
   },
   { 'nvim-telescope/telescope.nvim', tag = '0.1.4',
-    config = function ()
-      local builtin = require'telescope.builtin'
-      vim.keymap.set('n', '<leader>ff', builtin.find_files)
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-    end,
+    cmd = 'Telescope',
     dependencies = 'nvim-lua/plenary.nvim',
     keys = {
-      { '<leader>ff' },
-      { '<leader>fg' },
+      makekeymap('<leader>ff', 'Telescope find_files'),
+      makekeymap('<leader>fg', 'Telescope live_grep'),
     },
   },
   { 'mbbill/undotree',
     cmd = { 'UndotreeToggle' },
     keys = {
-      { '<leader>u', vim.cmd.UndotreeToggle },
+      makekeymap('<leader>u', 'UndotreeToggle'),
     },
   },
 
@@ -183,13 +183,13 @@ require'lazy'.setup {
       'typescriptreact',
     },
     keys = {
-      { '<leader>tso', '<cmd>TSToolsOrganizeImports<cr>' },
-      { '<leader>tss', '<cmd>TSToolsSortImports<cr>' },
-      { '<leader>tsi', '<cmd>TSToolsRemoveUnusedImports<cr>' },
-      { '<leader>tsu', '<cmd>TSToolsRemoveUnused<cr>' },
-      { '<leader>tsf', '<cmd>TSToolsFixAll<cr>' },
-      { '<leader>tsd', '<cmd>TSToolsGoToSourceDefinition<cr>' },
-      { '<leader>tsr', '<cmd>TSToolsRenameFile<cr>' },
+      makekeymap('<leader>tso', 'TSToolsOrganizeImports'),
+      makekeymap('<leader>tss', 'TSToolsSortImports'),
+      makekeymap('<leader>tsi', 'TSToolsRemoveUnusedImports'),
+      makekeymap('<leader>tsu', 'TSToolsRemoveUnused'),
+      makekeymap('<leader>tsf', 'TSToolsFixAll'),
+      makekeymap('<leader>tsd', 'TSToolsGoToSourceDefinition'),
+      makekeymap('<leader>tsr', 'TSToolsRenameFile'),
     },
     opts = {},
   },
