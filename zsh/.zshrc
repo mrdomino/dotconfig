@@ -1,5 +1,5 @@
 prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
-[[ "$(hostname)" =~ Mac ]] || prompt="${prompt}%F{cyan}%m%f:"
+[[ "$(hostname)" == Mac* ]] || prompt="${prompt}%F{cyan}%m%f:"
 prompt="${prompt}%1~ %# "
 
 ssh_term() {
@@ -38,8 +38,7 @@ push_fpath ~/.local/share/zsh/site-functions
 [[ -x $(which rustup) ]] && push_fpath \
   ${$(rustup which rustc)%/*/*}/share/zsh/site-functions
 
-[[ "$(hostname)" =~ Mac ]] || autoload -Uz ssh-reagent
-
+[[ "$(hostname)" == Mac* ]] || autoload -Uz ssh-reagent
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
 autoload -Uz compinit && compinit -d ~/.zcompdump
