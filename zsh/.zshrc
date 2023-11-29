@@ -1,8 +1,14 @@
 prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
 [[ "$(hostname)" =~ Mac ]] || prompt="${prompt}%F{cyan}%m%f:"
 prompt="${prompt}%1~ %# "
+
+ssh_term() {
+  ssh $@ -t tmux -CC new -As0
+}
+
+[[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
+[[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
 alias venv='source ~/venv/bin/activate'
-[[ dev = "$(hostname)" ]] || alias dev='ssh dev -t tmux -CC new -As0'
 alias vim=nvim
 alias vimconf='nvim ~/.config/nvim/init.lua'
 alias :q=sl
