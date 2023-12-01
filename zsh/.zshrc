@@ -1,6 +1,7 @@
 prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
 [[ dev = "$(hostname)" ]] && prompt="${prompt}%F{cyan}%m%f:"
 prompt="${prompt}%1~ %# "
+alias cosmo='path=(/opt/cosmocc/bin $path)'
 alias venv='source ~/venv/bin/activate'
 [[ dev = "$(hostname)" ]] || alias dev='ssh dev -t tmux -CC new -As0'
 alias vim=nvim
