@@ -7,6 +7,7 @@ push_path() {
 }
 typeset -U path
 push_path /usr/local/go/bin
+push_path /opt/cosmocc/bin
 push_path ~/bin
 push_path ~/.local/share/bob/nvim-bin
 push_path ~/go/bin
