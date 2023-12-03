@@ -43,4 +43,4 @@ push_fpath ~/.local/share/zsh/site-functions
 [[ "$(hostname)" == Mac* ]] || autoload -Uz ssh-reagent
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.cache/zsh
-autoload -Uz compinit && compinit -d ~/.zcompdump
+autoload -Uz compinit && compinit -w -d ~/.zcompdump
