@@ -34,6 +34,7 @@ setopt append_history
 push_fpath() {
   [[ -d "$@" ]] && fpath+=("$@")
 }
+typeset -U fpath
 push_fpath /opt/local/share/zsh/site-functions
 push_fpath ~/.config/zsh/site-functions
 push_fpath ~/.local/share/zsh/site-functions
