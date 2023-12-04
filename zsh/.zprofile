@@ -13,3 +13,4 @@ push_path ~/.local/share/bob/nvim-bin
 push_path ~/go/bin
 push_path ~/.cargo/bin
 push_path $BUN_INSTALL/bin
+unfunction push_path

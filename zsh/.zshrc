@@ -9,7 +9,7 @@ ssh_term() {
 [[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
 [[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
 
-alias cosmo='path=(/opt/cosmocc/bin $path)'
+alias cosmo='cd ~/{,src/}cosmo(N) ; path=(/opt/cosmocc/bin $path)'
 alias venv='source ~/venv/bin/activate'
 alias vim=nvim
 alias vimconf='nvim ~/.config/nvim/init.lua'
@@ -39,6 +39,7 @@ push_fpath ~/.config/zsh/site-functions
 push_fpath ~/.local/share/zsh/site-functions
 [[ -x $(which rustup) ]] && push_fpath \
   ${$(rustup which rustc)%/*/*}/share/zsh/site-functions
+unfunction push_fpath
 
 [[ "$(hostname)" == Mac* ]] || autoload -Uz ssh-reagent
 zstyle ':completion:*' use-cache on
