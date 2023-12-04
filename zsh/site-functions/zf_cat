@@ -1,0 +1,5 @@
+set -eu
+if [[ $# -gt 0 ]]; then
+  exec < "$1"
+fi
+while IFS= read -e line; do done
