@@ -23,9 +23,7 @@ push_fpath ~/.local/share/zsh/site-functions
 unfunction push_fpath
 
 # aliases {{{1
-ssh_term() {
-  ssh $@ -t tmux -CC new -As0
-}
+ssh_term() { ssh $@ -t tmux -CC new -As0 }
 [[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
 [[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
 
