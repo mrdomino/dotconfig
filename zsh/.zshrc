@@ -13,6 +13,7 @@ alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin $path)'
 alias venv='source ~/venv/bin/activate'
 alias vim=nvim
 alias vimconf='nvim ~/.config/nvim/init.lua'
+alias zshrc="$EDITOR $ZDOTDIR/.zshrc && exec $SHELL"
 alias :q=sl
 
 bindkey -e
