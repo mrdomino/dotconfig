@@ -9,7 +9,7 @@ ssh_term() {
 [[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
 [[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
 
-alias cosmo='cd ~/{,src/}cosmo(N) ; path=(/opt/cosmocc/bin $path)'
+alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin $path)'
 alias venv='source ~/venv/bin/activate'
 alias vim=nvim
 alias vimconf='nvim ~/.config/nvim/init.lua'
