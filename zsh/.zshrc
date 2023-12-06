@@ -33,11 +33,8 @@ unfunction push_fpath
 #╚────────────────────────────────────────────────────────────────────╝
 ssh_term() { ssh $@ -t tmux -CC new -As0 }
 edit_zsh() {
-  local f=$1
-  $EDITOR "$f" && {
-    zcompile "$f"
-    exec $SHELL
-  }
+  local f=$1; shift
+  $EDITOR "$f" && exec $SHELL "$@"
 }
 [[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
 [[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
@@ -46,7 +43,7 @@ alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin $path)'
 alias venv='source ~/venv/bin/activate'
 alias vim=nvim
 alias vimconf='nvim ~/.config/nvim/init.lua'
-alias zprofile="edit_zsh $ZDOTDIR/.zprofile"
+alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
