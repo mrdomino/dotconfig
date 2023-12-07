@@ -1,5 +1,14 @@
 #!/bin/sh
-set -eu
+set -eux
 if [ ! -f ~/.zshenv ]; then touch ~/.zshenv; fi
 grep -Fx 'export ZDOTDIR="$HOME/.config/zsh"' ~/.zshenv >/dev/null ||
   echo 'export ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
+
+exec zsh -l <<EOF
+set -eux
+[[ -x $(which nvim) ]] && exit
+curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+. ~/.cargo/env
+cargo install bob-nvim rustup
+bob use stable
+EOF
