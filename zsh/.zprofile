@@ -1,6 +1,6 @@
 export BUN_INSTALL=~/.bun
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
-export EDITOR=nvim
+export EDITOR=vim
 
 push_path() {
   [[ -d "$@" ]] && path+=("$@")
@@ -14,3 +14,5 @@ push_path ~/go/bin
 push_path ~/.cargo/bin
 push_path $BUN_INSTALL/bin
 unfunction push_path
+
+[[ -x $(which nvim) ]] && EDITOR=$(which nvim)

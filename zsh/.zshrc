@@ -34,7 +34,7 @@ unfunction push_fpath
 ssh_term() { ssh $@ -t tmux -CC new -As0 }
 edit_zsh() {
   local f=$1; shift
-  $EDITOR "$f" && exec $SHELL "$@"
+  ${EDITOR:-vim} "$f" && exec $SHELL "$@"
 }
 [[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
 [[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
@@ -48,6 +48,7 @@ alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
 [[ "$(hostname)" == Mac* ]] || autoload -Uz ssh-reagent
+autoload -Uz is-at-least
 autoload -Uz zf_cat
 
 #╔────────────────────────────────────────────────────────────────────╗
@@ -68,7 +69,13 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
-autoload -Uz compinit && compinit -w -d ~/.zcompdump
+autoload -Uz compinit && {
+  if is-at-least 5.9; then
+    compinit -d ~/.zcompdump -w
+  else
+    compinit -d ~/.zcompdump
+  fi
+}
 
 #╔────────────────────────────────────────────────────────────────────╗
 #│ keys                                                   ─────────│══╣1
