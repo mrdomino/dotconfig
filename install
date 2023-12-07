@@ -1,7 +1,5 @@
 #!/bin/sh
-
 set -eu
-
-[[ ! -f ~/.zshenv ]] && touch ~/.zshenv
+if [ ! -f ~/.zshenv ]; then touch ~/.zshenv; fi
 grep -Fx 'export ZDOTDIR="$HOME/.config/zsh"' ~/.zshenv >/dev/null ||
   echo 'export ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
