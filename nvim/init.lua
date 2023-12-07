@@ -17,8 +17,7 @@ vim.keymap.set('i', '<C-i>', '<Tab>')
 vim.g.python3_host_prog = vim.fn.stdpath('data') .. '/virtualenv/bin/python3'
 if not vim.loop.fs_stat(vim.g.python3_host_prog) then
   vim.fn.system {
-    'virtualenv',
-    '--system-site-packages',
+    'python3', '-m', 'venv', '--system-site-packages',
     vim.fn.stdpath('data') .. '/virtualenv',
   }
 end
