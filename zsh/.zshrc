@@ -38,11 +38,14 @@ edit_zsh() {
 }
 [[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
 [[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
+[[ cuda = "$(hostname)" ]] || alias cuda='ssh_term cuda'
 
 alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin $path)'
 alias venv='source ~/venv/bin/activate'
-alias vim=nvim
-alias vimconf='nvim ~/.config/nvim/init.lua'
+[[ -x $(which nvim) ]] && {
+  alias vim=nvim
+  alias vimconf='nvim ~/.config/nvim/init.lua'
+}
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
