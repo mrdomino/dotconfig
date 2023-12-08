@@ -36,8 +36,15 @@ edit_zsh() {
   local f=$1; shift
   ${EDITOR:-vim} "$f" && exec $SHELL "$@"
 }
-[[ dev = "$(hostname)" ]] || alias dev='ssh_term dev'
-[[ nixos = "$(hostname)" ]] || alias nixos='ssh_term nixos'
+[[ "$(hostname)" = dev ]] || alias dev='ssh_term dev'
+[[ "$(hostname)" = nixos ]] || alias nixos='ssh_term nixos'
+[[ "$(hostname)" = Mac* ]] && alias nixvm='ssh_term nixvm'
+[[ "$(hostname)" = nix* ]] && {
+  nixedit() {
+    sudo -e "${1:-/etc/nixos/configuration.nix}" &&
+      sudo nixos-rebuild switch
+  }
+}
 [[ cuda = "$(hostname)" ]] || alias cuda='ssh_term cuda'
 
 alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin $path)'
