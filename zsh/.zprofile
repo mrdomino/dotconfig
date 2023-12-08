@@ -15,4 +15,10 @@ push_path ~/.cargo/bin
 push_path $BUN_INSTALL/bin
 unfunction push_path
 
+push_manpath() {
+  [[ -d "$@" ]] && manpath+=("$@")
+}
+push_manpath ~/.nix-profile/share/man
+unfunction push_manpath
+
 [[ -x $(which nvim) ]] && EDITOR=$(which nvim)
