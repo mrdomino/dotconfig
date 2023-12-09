@@ -6,7 +6,7 @@ grep -Fx 'export ZDOTDIR="$HOME/.config/zsh"' ~/.zshenv >/dev/null ||
 
 exec zsh -l <<EOF
 set -eux
-[[ -x $(which nvim) ]] && exit
+[[ -x "$(which nvim)" ]] && exit
 curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 . ~/.cargo/env
 cargo install bob-nvim ripgrep
