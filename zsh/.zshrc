@@ -7,7 +7,7 @@ setopt append_history
 
 # prompt ⟬1
 prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
-[[ "$(hostname)" == Mac* ]] || prompt="${prompt}%F{cyan}%m%f:"
+[[ "$(hostname)" = Mac* ]] || prompt="${prompt}%F{cyan}%m%f:"
 prompt="${prompt}%1~ %# "
 
 # fpath ⟬1
@@ -37,7 +37,7 @@ edit_zsh() {
       sudo nixos-rebuild switch
   }
 }
-[[ cuda = "$(hostname)" ]] || alias cuda='ssh_term cuda'
+[[ "$(hostname)" = cuda ]] || alias cuda='ssh_term cuda'
 
 alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin(N) $path)'
 alias venv='source ~/venv/bin/activate'
@@ -49,7 +49,7 @@ alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
-[[ "$(hostname)" == Mac* ]] || autoload -Uz ssh-reagent
+[[ "$(hostname)" = Mac* ]] || autoload -Uz ssh-reagent
 autoload -Uz is-at-least
 autoload -Uz zf_cat
 
