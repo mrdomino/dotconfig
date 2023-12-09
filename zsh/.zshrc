@@ -39,7 +39,7 @@ edit_zsh() {
 }
 [[ cuda = "$(hostname)" ]] || alias cuda='ssh_term cuda'
 
-alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin $path)'
+alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin(N) $path)'
 alias venv='source ~/venv/bin/activate'
 [[ -x $(which nvim) ]] && {
   alias vim=nvim
