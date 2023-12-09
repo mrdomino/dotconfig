@@ -20,17 +20,16 @@ if not vim.loop.fs_stat(vim.g.python3_host_prog) then
     'python3', '-m', 'venv', '--system-site-packages',
     vim.fn.stdpath('data') .. '/virtualenv',
   }
+  vim.fn.system {
+    vim.fn.stdpath('data') .. '/virtualenv/bin/pip', 'install', 'pynvim',
+  }
 end
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable',
-    lazypath,
+    'git', 'clone', '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git', '--branch=stable', lazypath,
   }
 end
 vim.opt.rtp:prepend(lazypath)
