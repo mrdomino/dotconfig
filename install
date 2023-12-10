@@ -1,8 +1,8 @@
 #!/bin/sh
 set -eux
 if [ ! -f ~/.zshenv ]; then touch ~/.zshenv; fi
-grep -Fx 'export ZDOTDIR="$HOME/.config/zsh"' ~/.zshenv >/dev/null ||
-  echo 'export ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
+grep -Fx 'ZDOTDIR="$HOME/.config/zsh"' ~/.zshenv >/dev/null ||
+  echo 'ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
 
 exec zsh -l <<EOF
 set -eux
