@@ -28,6 +28,9 @@ edit_zsh() {
   local f=$1; shift
   ${EDITOR:-vim} "$f" && exec $SHELL "$@"
 }
+scpkey() {
+  scp ${2:-~/.ssh/joshin.pub} $1:.ssh
+}
 [[ "$(hostname)" = dev ]] || alias dev='ssh_term dev'
 [[ "$(hostname)" = nixos ]] || alias nixos='ssh_term nixos'
 [[ "$(hostname)" = Mac* ]] && alias nixvm='ssh_term nixvm'
