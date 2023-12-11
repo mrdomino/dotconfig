@@ -1,4 +1,5 @@
 vim.cmd.syntax 'off'
+vim.cmd.colorscheme 'habamax'
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.list = true
