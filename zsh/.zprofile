@@ -4,7 +4,8 @@ export EDITOR=vim
 
 typeset -U path
 path+=(/{usr/local/go/bin,opt/cosmocc/bin}(N))
-path+=(~/{{,{go,.cargo,$BUN_INSTALL}/}bin,.local/share/bob/nvim-bin}(N))
+path+=(~/{,go,.{cargo,bun}}/bin(N))
+path+=(~/.local/share/bob/nvim-bin(N))
 
 typeset -U manpath
 manpath+=(~/.nix-profile/share/man(N))
