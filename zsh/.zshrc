@@ -15,7 +15,6 @@ push_fpath() {
   [[ -d "$@" ]] && fpath+=("$@")
 }
 typeset -U fpath
-push_fpath /opt/local/share/zsh/site-functions
 push_fpath ~/.config/zsh/site-functions
 push_fpath ~/.local/share/zsh/site-functions
 [[ -x $(which rustup) ]] && push_fpath \
