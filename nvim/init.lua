@@ -97,10 +97,6 @@ require'lazy'.setup {
     opts = { },
   },
 
-  { 'williamboman/mason.nvim',
-    config = true,
-  },
-
   { 'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     lazy = true,
@@ -143,16 +139,22 @@ require'lazy'.setup {
       lsp_zero.on_attach(function(_, bufnr)
         lsp_zero.default_keymaps { buffer = bufnr }
       end)
-      require'mason-lspconfig'.setup {
-        ensure_installed = {'lua_ls', 'tsserver', 'rust_analyzer'},
-        handlers = {
-          lsp_zero.default_setup,
-        },
-      }
+      local servers = {}
+      local add_server = function(exe, name)
+        if not name then
+          name = exe
+        end
+        if vim.fn.executable(exe) then
+          table.insert(servers, name)
+        end
+      end
+      add_server('lua-language-server', 'lua_ls')
+      add_server('rust-analyzer', 'rust_analyzer')
+      add_server('tsserver')
+      lsp_zero.setup_servers(servers)
     end,
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
-      'williamboman/mason-lspconfig.nvim',
     },
   },
 
