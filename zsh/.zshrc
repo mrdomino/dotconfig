@@ -42,7 +42,15 @@ scpkey() {
 }
 [[ "$(hostname)" = cuda ]] || alias cuda='ssh_term cuda'
 
-alias cosmo='cd ~/{,src/}cosmo(N[1]) ; path=(/opt/cosmocc/bin(N) $path)'
+cosmo() {
+  cd ~/{,src/}${1:-cosmo}(N[1])
+  path=(/opt/cosmocc/bin(N) $path)
+}
+_cosmo() {
+  local paths=(~{,/src})(N)
+  _path_files -/ -W "(${(j: :)paths})"
+}
+
 alias venv='source ~/venv/bin/activate'
 [[ -x $(which nvim) ]] && {
   alias vim=nvim
@@ -77,6 +85,7 @@ autoload -Uz compinit && {
     compinit -d ~/.zcompdump
   fi
 }
+compdef _cosmo cosmo
 
 # keys ⟬1
 bindkey -e
