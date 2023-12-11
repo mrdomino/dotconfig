@@ -11,15 +11,10 @@ prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
 prompt="${prompt}%1~ %# "
 
 # fpath ⟬1
-push_fpath() {
-  [[ -d "$@" ]] && fpath+=("$@")
-}
 typeset -U fpath
-push_fpath ~/.config/zsh/site-functions
-push_fpath ~/.local/share/zsh/site-functions
-[[ -x $(which rustup) ]] && push_fpath \
-  ${$(rustup which rustc)%/*/*}/share/zsh/site-functions
-unfunction push_fpath
+fpath+=(~/.{config,local/share}/zsh/site-functions(N))
+[[ -x "$(which rustup)" ]] &&
+  fpath+=${$(rustup which rustc)%/*/*}/share/zsh/site-functions
 
 # aliases ⟬1
 ssh_term() { ssh $@ -t tmux -CC new -As0 }
