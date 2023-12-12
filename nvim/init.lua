@@ -144,7 +144,7 @@ require'lazy'.setup {
         if not name then
           name = exe
         end
-        if vim.fn.executable(exe) then
+        if vim.fn.executable(exe) ~= 0 then
           table.insert(servers, name)
         end
       end
