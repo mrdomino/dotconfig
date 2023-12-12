@@ -1,4 +1,4 @@
-export BUN_INSTALL=~/.bun
+[[ -e ~/.bun ]] && export BUN_INSTALL=~/.bun
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 export EDITOR=vim
 
