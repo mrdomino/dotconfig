@@ -20,7 +20,7 @@ fpath+=(~/.{config,{nix-profile,local}/share}/zsh/site-functions(N))
 ssh_term() { ssh $@ -t tmux -CC new -As0 }
 edit_zsh() {
   local f=$1; shift
-  ${EDITOR:-vim} "$f" && exec $SHELL "$@"
+  ${EDITOR:-vim} "$f" && exec $@ $SHELL
 }
 scpkey() {
   scp ${2:-~/.ssh/joshin.pub} $1:.ssh
@@ -50,7 +50,7 @@ alias venv='source ~/venv/bin/activate'
   alias vim=nvim
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
-alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
+alias zprofile="edit_zsh $ZDOTDIR/.zprofile -a -${SHELL##*/}"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
