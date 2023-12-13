@@ -27,6 +27,7 @@ scpkey() {
 }
 [[ "$(hostname)" = dev ]] || alias dev='ssh_term dev'
 [[ "$(hostname)" = nixos ]] || alias nixos='ssh_term nixos'
+[[ "$(hostname)" = jce ]] || alias jce='ssh_term jce'
 [[ "$(hostname)" = Mac* ]] && alias nixvm='ssh_term nixvm'
 [[ "$(hostname)" = nix* ]] && {
   nixedit() {
