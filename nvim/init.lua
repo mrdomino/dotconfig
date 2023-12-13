@@ -8,7 +8,6 @@ vim.opt.showbreak = '↪ '
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.opt.colorcolumn = '81'
 vim.opt.mouse = ''
 vim.g.mapleader = ';'
 vim.g.localleader = '\\'
@@ -193,6 +192,18 @@ require'lazy'.setup {
     },
   },
 }
+
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufWinEnter' }, {
+  pattern = '*',
+  group = vim.api.nvim_create_augroup('mine', {}),
+  callback = function()
+    if (vim.bo.textwidth or 0) > 0 then
+      vim.wo.colorcolumn = '+1'
+    else
+      vim.wo.colorcolumn = '81'
+    end
+  end,
+})
 
 if vim.version.lt(vim.version(), {0, 10, 0}) then
   vim.api.nvim_create_autocmd({ 'SwapExists' }, {
