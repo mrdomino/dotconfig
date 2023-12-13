@@ -136,6 +136,8 @@ require'lazy'.setup {
       lsp_zero.extend_lspconfig()
       lsp_zero.on_attach(function(_, bufnr)
         lsp_zero.default_keymaps { buffer = bufnr }
+        vim.keymap.set('n', '<localleader>ls', '<cmd>LspStop<cr>')
+        vim.keymap.set('n', '<localleader>lt', '<cmd>LspStart<cr>')
       end)
       local servers = {}
       local add_server = function(exe, name)
@@ -146,6 +148,7 @@ require'lazy'.setup {
           table.insert(servers, name)
         end
       end
+      add_server('clangd')
       add_server('lua-language-server', 'lua_ls')
       add_server('rust-analyzer', 'rust_analyzer')
       add_server('tsserver')
