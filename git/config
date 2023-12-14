@@ -22,3 +22,5 @@
 	defaultBranch = main
 [rerere]
 	enabled = true
+[clone]
+	defaultRemoteName = up
