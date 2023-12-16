@@ -57,7 +57,7 @@ alias :q=sl
 [[ "$(hostname)" = Mac* ]] || autoload -Uz ssh-reagent
 autoload -Uz is-at-least
 autoload -Uz zf_cat
-autoload -Uz cosmake
+autoload -Uz mmake
 
 # help builtin ⟬2
 autoload -Uz run-help
