@@ -1,0 +1,23 @@
+local mode
+case $1 in
+  (m|MODE)=*)
+    mode=${1#*=}; shift ;;
+  aarch64|x86_64|aarch64-(zero|tiny)|x86_64-tiny) ;&
+  zero|fastbuild|opt|optlinux|rel|asan|dbg|sysv)  ;&
+  tiny(|linux(|bsd)|sysv|nowin)|nox87|llvm|ansi)
+    mode=$1; shift ;;
+  *)
+    mode=${MODE:-${m}} ;;
+esac
+local -a flags
+while (( $# > 0 )); do
+  case $1 in
+    -*|*=*) flags+=($1); shift ;;
+    *) break ;;
+  esac
+done
+local make
+[[ -x /opt/cosmocc/bin/make ]] && make=/opt/cosmocc/bin/make
+[[ -z $make ]] && make=build/bootstrap/make.com
+local arr=(a b c)
+$make $flags ${(@)@/#/o/$mode/}
