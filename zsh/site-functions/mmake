@@ -9,6 +9,12 @@ case $1 in
   *)
     mode=${MODE:-${m}} ;;
 esac
+[[ -z $mode ]] && {
+  local arch=$(uname -m)
+  case $arch in
+    arm64|aarch64)  mode=aarch64  ;;
+  esac
+}
 local -a flags
 while (( $# > 0 )); do
   case $1 in
@@ -19,5 +25,4 @@ done
 local make
 [[ -x /opt/cosmocc/bin/make ]] && make=/opt/cosmocc/bin/make
 [[ -z $make ]] && make=build/bootstrap/make.com
-local arr=(a b c)
 $make $flags ${(@)@/#/o/$mode/}
