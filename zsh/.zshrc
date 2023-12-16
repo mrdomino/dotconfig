@@ -39,7 +39,6 @@ scpkey() {
 
 cosmo() {
   cd ~/{,src/}${1:-cosmo}(N[1])
-  path=(/opt/cosmocc/bin(N) $path)
 }
 _cosmo() {
   local paths=(~{,/src})(N)
