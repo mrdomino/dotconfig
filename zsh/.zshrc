@@ -13,6 +13,7 @@ prompt="${prompt}%1~ %# "
 # fpath ⟬1
 typeset -U fpath
 fpath+=(~/.{config,{nix-profile,local}/share}/zsh/site-functions(N))
+[[ -n $COSMO ]] && fpath+=($COSMO/tool/zsh(N))
 [[ -x "$(which rustup)" ]] &&
   fpath+=${$(rustup which rustc)%/*/*}/share/zsh/site-functions
 
