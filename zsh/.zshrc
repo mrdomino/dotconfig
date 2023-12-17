@@ -26,17 +26,21 @@ edit_zsh() {
 scpkey() {
   scp ${2:-~/.ssh/joshin.pub} $1:.ssh
 }
-[[ "$(hostname)" = dev ]] || alias dev='ssh_term dev'
-[[ "$(hostname)" = nixos ]] || alias nixos='ssh_term nixos'
-[[ "$(hostname)" = jce ]] || alias jce='ssh_term jce'
-[[ "$(hostname)" = Mac* ]] && alias nixvm='ssh_term nixvm'
+
+[[ "$(hostname)" = cuda ]]    || alias cuda='ssh_term cuda'
+[[ "$(hostname)" = dev ]]     || alias dev='ssh_term dev'
+[[ "$(hostname)" = freebsd ]] || alias freebsd='ssh_term freebsd'
+[[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
+[[ "$(hostname)" = nixos ]]   || alias nixos='ssh_term nixos'
+[[ "$(hostname)" = Mac* ]]    && alias nixvm='ssh_term nixvm'
+[[ "$(hostname)" = Mac* ]]    && alias fbsdvm='ssh_term fbsdvm'
+
 [[ "$(hostname)" = nix* ]] && {
   nixedit() {
     sudo -e "${1:-/etc/nixos/configuration.nix}" &&
       sudo nixos-rebuild switch
   }
 }
-[[ "$(hostname)" = cuda ]] || alias cuda='ssh_term cuda'
 
 cosmo() {
   cd ~/{,src/}${1:-cosmo}(N[1])
