@@ -42,10 +42,13 @@ scpkey() {
   }
 }
 
-cosmo() {
-  cd ~/{,src/}${1:-cosmo}(N[1])
+src() {
+  cd ~/{,src/}$1(N[1])
 }
-_cosmo() {
+cosmo() {
+  src ${1:-cosmo}
+}
+_src() {
   local paths=(~{,/src})(N)
   _path_files -/ -W "(${(j: :)paths})"
 }
@@ -85,7 +88,8 @@ autoload -Uz compinit && {
     compinit -d ~/.zcompdump
   fi
 }
-compdef _cosmo cosmo
+compdef _src src
+compdef _src cosmo
 
 # keys ⟬1
 bindkey -e
