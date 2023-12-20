@@ -135,7 +135,10 @@ require'lazy'.setup {
       local lsp_zero = require'lsp-zero'
       lsp_zero.extend_lspconfig()
       lsp_zero.on_attach(function(_, bufnr)
-        lsp_zero.default_keymaps { buffer = bufnr }
+        lsp_zero.default_keymaps {
+          buffer = bufnr,
+          preserve_mappings = false,
+        }
         vim.keymap.set('n', '<localleader>ls', '<cmd>LspStop<cr>')
         vim.keymap.set('n', '<localleader>lt', '<cmd>LspStart<cr>')
       end)
