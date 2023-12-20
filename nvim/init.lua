@@ -37,6 +37,7 @@ require'lazy'.setup {
     build = ':TSUpdate',
     config = function ()
       require'nvim-treesitter.configs'.setup {
+        auto_install = vim.fn.executable('tree-sitter') ~= 0,
         ensure_installed = {
           'bash',
           'beancount',
@@ -57,7 +58,10 @@ require'lazy'.setup {
           'typescript',
           'vim',
         },
+        ignore_install = {},
         indent = { enable = true },
+        modules = { },
+        sync_install = false,
       }
     end,
     keys = {
@@ -71,13 +75,15 @@ require'lazy'.setup {
   { 'nvim-telescope/telescope.nvim', tag = '0.1.4',
     cmd = 'Telescope',
     dependencies = 'nvim-lua/plenary.nvim',
-    keys = function ()
-      local builtin = require'telescope.builtin'
-      return {
-        { '<leader>ff', builtin.find_files, desc = 'find files' },
-        { '<leader>fg', builtin.live_grep, desc = 'live grep' },
-      }
-    end,
+    keys = {
+      { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'find files' },
+      { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = 'live grep' },
+    },
+    opts = {
+      defaults = {
+        layout_strategy = 'vertical',
+      },
+    },
   },
   { 'mbbill/undotree',
     cmd = { 'UndotreeToggle' },
@@ -98,7 +104,7 @@ require'lazy'.setup {
   { 'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     lazy = true,
-    config = false,
+    config = function () end,
     init = function ()
       vim.g.lsp_zero_extend_cmp = 0
       vim.g.lsp_zero_extend_lspconfig = 0
@@ -133,6 +139,7 @@ require'lazy'.setup {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function ()
       local lsp_zero = require'lsp-zero'
+      require'neodev'.setup {}
       lsp_zero.extend_lspconfig()
       lsp_zero.on_attach(function(_, bufnr)
         lsp_zero.default_keymaps {
@@ -158,6 +165,7 @@ require'lazy'.setup {
       lsp_zero.setup_servers(servers)
     end,
     dependencies = {
+      'folke/neodev.nvim',
       'hrsh7th/cmp-nvim-lsp',
     },
   },
