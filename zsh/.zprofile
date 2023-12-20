@@ -10,7 +10,8 @@ if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
   export NIX_PATH=~/.nix-defexpr
 fi
 path+=(/{usr/local/go/bin,opt/cosmocc/bin}(N))
-path+=(~{,/{go,.{cargo,bun}}}/bin(N))
+path+=(~/bin)
+path+=(~/{go,.{cargo,bun}}/bin(N))
 path+=(~/.local/share/bob/nvim-bin(N))
 
 typeset -U manpath
