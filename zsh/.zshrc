@@ -128,9 +128,4 @@ function reset_broken_terminal () {
 add-zsh-hook -Uz precmd reset_broken_terminal
 
 # colophon ⟬1
-# XXX fix nix-daemon.sh damage
-typeset -U _fix_path
-_fix_path=($path)
-path=($_fix_path)
-unset _fix_path
 # vim:fdm=marker fmr=⟬,⟭
