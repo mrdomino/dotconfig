@@ -1,6 +1,5 @@
-set -eu
 if [[ $# -gt 0 ]]; then
-  exec < "$1"
+  exec < "$1" || return 1
 fi
 while IFS= read line; do
   echo $line
