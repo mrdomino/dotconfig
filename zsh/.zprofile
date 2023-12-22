@@ -7,7 +7,6 @@ export COSMO=$(echo ~{,/src}/cosmo(N[1]))
 typeset -U path
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-  export NIX_PATH=~/.nix-defexpr
 fi
 path+=(/{usr/local/go/bin,opt/cosmocc/bin}(N))
 path+=(~/bin)
