@@ -62,7 +62,6 @@ alias zprofile="edit_zsh $ZDOTDIR/.zprofile -a -${SHELL##*/}"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
-[[ "$(hostname)" = Mac* ]] || autoload -Uz ssh-reagent
 autoload -Uz is-at-least mmake nproc zf_cat
 
 # help builtin ⟬2
