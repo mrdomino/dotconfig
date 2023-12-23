@@ -126,7 +126,7 @@ add-zsh-hook -Uz precmd reset_broken_terminal
 
 [[ -n $TMUX ]] && {
   function refresh_sock () {
-    export $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+    export $(tmux show-environment SSH_AUTH_SOCK)
   }
   add-zsh-hook -Uz precmd refresh_sock
 }
