@@ -124,12 +124,12 @@ function reset_broken_terminal () {
 }
 add-zsh-hook -Uz precmd reset_broken_terminal
 
-[[ -n $TMUX ]] && {
+if [[ -n $TMUX ]]; then
   function refresh_sock () {
     export $(tmux show-environment SSH_AUTH_SOCK)
   }
   add-zsh-hook -Uz precmd refresh_sock
-}
+fi
 
 # colophon ⟬1
 # vim:fdm=marker fmr=⟬,⟭
