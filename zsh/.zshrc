@@ -126,7 +126,12 @@ add-zsh-hook -Uz precmd reset_broken_terminal
 
 if [[ -n $TMUX ]]; then
   function refresh_sock () {
-    export $(tmux show-environment SSH_AUTH_SOCK)
+    local sock=$(tmux show-environment SSH_AUTH_SOCK)
+    if [[ $sock[1] = '-' ]]; then
+      unset SSH_AUTH_SOCK
+    else
+      export $sock
+    fi
   }
   add-zsh-hook -Uz precmd refresh_sock
 fi
