@@ -117,13 +117,20 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
   add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# tty ⟬1
+# tty/hooks ⟬1
 ttyctl -f
 autoload -Uz add-zsh-hook
 function reset_broken_terminal () {
   printf '%b' '\e[0m\e(B\e)0\017\e[?5l\e7\e[0;0r\e8'
 }
 add-zsh-hook -Uz precmd reset_broken_terminal
+
+[[ -n $TMUX ]] && {
+  function refresh_sock () {
+    export $(tmux show-environment | grep '^SSH_AUTH_SOCK')
+  }
+  add-zsh-hook -Uz precmd refresh_sock
+}
 
 # colophon ⟬1
 # vim:fdm=marker fmr=⟬,⟭
