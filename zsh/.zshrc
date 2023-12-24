@@ -133,7 +133,7 @@ if [[ -n $TMUX ]]; then
       export $sock
     fi
   }
-  add-zsh-hook -Uz precmd refresh_sock
+  add-zsh-hook -Uz preexec refresh_sock
 fi
 
 # colophon ⟬1
