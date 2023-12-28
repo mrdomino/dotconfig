@@ -1,5 +1,6 @@
 {
   "CodeGPT.nvim": { "branch": "master", "commit": "6e3714e8d336aea4a205081d44ed8b2e3505dee2" },
+  "LuaSnip": { "branch": "master", "commit": "2463d687fe704b76eb0aa3bb34e95f69a5bb0362" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "5af77f54de1b16c34b23cba810150689a3a90312" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "lsp-zero.nvim": { "branch": "v3.x", "commit": "37e87651a7d75b9a13a83deaeec5eda3ef363a7e" },
