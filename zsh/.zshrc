@@ -27,13 +27,14 @@ scpkey() {
   scp ${2:-~/.ssh/joshin.pub} $1:.ssh
 }
 
-[[ "$(hostname)" = cuda ]]    || alias cuda='ssh_term cuda'
-[[ "$(hostname)" = dev ]]     || alias dev='ssh_term dev'
-[[ "$(hostname)" = freebsd ]] || alias freebsd='ssh_term freebsd'
-[[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
-[[ "$(hostname)" = nixos ]]   || alias nixos='ssh_term nixos'
-[[ "$(hostname)" = Mac* ]]    && alias nixvm='ssh_term nixvm'
-[[ "$(hostname)" = Mac* ]]    && alias fbsdvm='ssh_term fbsdvm'
+[[ "$(hostname)" = cuda ]]        || alias cuda='ssh_term cuda'
+[[ "$(hostname)" = dev ]]         || alias dev='ssh_term dev'
+[[ "$(hostname)" = freebsd ]]     || alias freebsd='ssh_term freebsd'
+[[ "$(hostname)" = jce ]]         || alias jce='ssh_term jce'
+[[ "$(hostname)" = nixos ]]       || alias nixos='ssh_term nixos'
+[[ "$(hostname)" = raspberrypi ]] || alias raspberrypi='ssh_term raspberrypi'
+[[ "$(hostname)" = Mac* ]]        && alias nixvm='ssh_term nixvm'
+[[ "$(hostname)" = Mac* ]]        && alias fbsdvm='ssh_term fbsdvm'
 
 [[ "$(hostname)" = nix* ]] && {
   nixedit() {
