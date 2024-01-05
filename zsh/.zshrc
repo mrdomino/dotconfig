@@ -13,7 +13,10 @@ prompt="${prompt}%1~ %# "
 # fpath ⟬1
 typeset -U fpath
 fpath+=(~/.{config,{nix-profile,local}/share}/zsh/site-functions(N))
-[[ -n $COSMO ]] && fpath+=($COSMO/tool/zsh(N))
+[[ -n $COSMO ]] && {
+  fpath+=($COSMO/tool/zsh(N))
+  autoload -Uz mmake nproc
+}
 [[ -x "$(which rustup)" ]] &&
   fpath+=${$(rustup which rustc)%/*/*}/share/zsh/site-functions
 
@@ -24,7 +27,7 @@ edit_zsh() {
   ${EDITOR:-vim} "$f" && exec $@ $SHELL
 }
 scpkey() {
-  scp ${2:-~/.ssh/joshin.pub} $1:.ssh
+  scp ${2:-~/.ssh/joshin.pub} $1:.ssh/joshin.pub
 }
 
 [[ "$(hostname)" = cuda ]]        || alias cuda='ssh_term cuda'
@@ -63,7 +66,7 @@ alias zprofile="edit_zsh $ZDOTDIR/.zprofile -a -${SHELL##*/}"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
-autoload -Uz is-at-least mmake nproc zf_cat
+autoload -Uz is-at-least zf_cat
 
 # help builtin ⟬2
 autoload -Uz run-help
