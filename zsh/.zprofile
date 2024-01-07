@@ -8,7 +8,7 @@ typeset -U path
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
-path+=(/{usr/local/go/bin,opt/cosmocc/bin}(N))
+path+=(/{usr/local/go,opt/cosmocc/current}/bin(N))
 path+=(~/bin)
 path+=(~/{go,.{cargo,bun}}/bin(N))
 path+=(~/.local/share/bob/nvim-bin(N))
