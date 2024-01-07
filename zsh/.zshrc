@@ -62,7 +62,7 @@ alias venv='source ~/venv/bin/activate'
   alias vim=nvim
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
-alias zprofile="edit_zsh $ZDOTDIR/.zprofile -a -${SHELL##*/}"
+alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
