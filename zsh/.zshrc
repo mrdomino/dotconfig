@@ -15,7 +15,7 @@ typeset -U fpath
 fpath+=(~/.{config,{nix-profile,local}/share}/zsh/site-functions(N))
 [[ -n $COSMO ]] && {
   fpath+=($COSMO/tool/zsh(N))
-  autoload -Uz mmake nproc
+  autoload -Uz mkofs mmake nproc
 }
 [[ -x "$(which rustup)" ]] &&
   fpath+=${$(rustup which rustc)%/*/*}/share/zsh/site-functions
