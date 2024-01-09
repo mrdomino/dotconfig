@@ -27,6 +27,7 @@ edit_zsh() {
   ${EDITOR:-vim} "$f" && exec $@ $SHELL
 }
 scpkey() {
+  ssh $1 mkdir -p .ssh &&
   scp ${2:-~/.ssh/joshin.pub} $1:.ssh/joshin.pub
 }
 
@@ -47,7 +48,12 @@ scpkey() {
 }
 
 src() {
-  cd ~/{,src/}$1(N[1])
+  for d in ~{,/src}; do
+    if [[ -e "$d/$1" ]]; then
+      cd "$d/$1"
+      break
+    fi
+  done
 }
 cosmo() {
   src ${1:-cosmo}
