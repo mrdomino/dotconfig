@@ -1,8 +1,12 @@
 [[ -e ~/.bun ]] && export BUN_INSTALL=~/.bun
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 export EDITOR=vim
-export COSMO=$(echo ~{,/src}/cosmo(N[1]))
-[[ -n $COSMO ]] || unset COSMO
+for d in ~{,/src}/cosmo; do
+  if [ -e $d ]; then
+    export COSMO=$d
+    break
+  fi
+done
 
 typeset -U path
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
