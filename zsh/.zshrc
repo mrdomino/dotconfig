@@ -63,6 +63,9 @@ _src() {
   _path_files -/ -W "(${(j: :)paths})"
 }
 
+[[ -f /Applications/Tailscale.app/Contents/MacOS/Tailscale ]] &&
+  alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+
 alias venv='source ~/venv/bin/activate'
 [[ -x $(which nvim) ]] && {
   alias vim=nvim
