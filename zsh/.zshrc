@@ -146,5 +146,7 @@ if [[ -n $TMUX ]]; then
   add-zsh-hook -Uz preexec refresh_sock
 fi
 
+TRAPUSR1() { rehash }
+
 # colophon ⟬1
 # vim:fdm=marker fmr=⟬,⟭
