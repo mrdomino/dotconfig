@@ -26,4 +26,6 @@ typeset -UT CPATH cpath
 typeset -UT LIBRARY_PATH library_path
 cpath+=(/opt/local/include(N))
 library_path+=(/opt/local/lib(N))
+cpath+=(/usr/local/include(N))
+library_path+=(/usr/local/lib(N))
 export CPATH LIBRARY_PATH
