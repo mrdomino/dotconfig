@@ -34,6 +34,7 @@ scpkey() {
 [[ "$(hostname)" = cuda ]]    || alias cuda='ssh_term cuda'
 [[ "$(hostname)" = dev ]]     || alias dev='ssh_term dev'
 [[ "$(hostname)" = freebsd ]] || alias freebsd='ssh_term freebsd'
+[[ "$(hostname)" = openbsd ]] || alias openbsd='ssh_term openbsd'
 [[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
 [[ "$(hostname)" = nixos ]]   || alias nixos='ssh_term nixos'
 [[ "$(hostname)" = rpi ]]     || alias rpi='ssh_term rpi'
