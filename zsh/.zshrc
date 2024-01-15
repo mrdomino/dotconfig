@@ -53,7 +53,7 @@ scpkey() {
 }
 
 src() {
-  for d in ~{,/src}; do
+  for d in ~{/src,}; do
     if [[ -e "$d/$1" ]]; then
       cd "$d/$1"
       break
