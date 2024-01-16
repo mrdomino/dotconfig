@@ -16,6 +16,7 @@ path+=(/{usr/local/go,opt/cosmocc/current}/bin(N))
 path+=(~/bin)
 path+=(~/{go,.{cargo,bun}}/bin(N))
 path+=(~/.local/share/bob/nvim-bin(N))
+path+=(~/venv/bin(N))
 
 typeset -U manpath
 manpath+=(~/.nix-profile/share/man(N))
