@@ -71,6 +71,9 @@ _src() {
 [[ -x /Applications/Tailscale.app/Contents/MacOS/Tailscale ]] &&
   alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 
+[[ -x ~/src/vere/bazel-bin/pkg/vere/urbit ]] &&
+  alias urbit-dev=~/src/vere/bazel-bin/pkg/vere/urbit
+
 alias venv='source ~/venv/bin/activate'
 [[ -x $(which nvim) ]] && {
   alias vim=nvim
