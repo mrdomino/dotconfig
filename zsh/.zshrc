@@ -8,6 +8,7 @@ HISTSIZE=20000
 SAVEHIST=10000
 setopt hist_expire_dups_first
 setopt append_history
+setopt no_share_history
 
 # prompt ⟬1
 prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
