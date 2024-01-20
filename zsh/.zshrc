@@ -121,13 +121,21 @@ backward-kill-dir() {
 zle -N backward-kill-dir
 bindkey '' backward-kill-dir
 
+if [[ -z ${(t)key} || ${(t)key} != array ]]; then
+  typeset -g -A key
+  [[ -n "$terminfo[kcuu1]" ]] && key[Up]=$terminfo[kcuu1]
+  [[ -n "$terminfo[kcud1]" ]] && key[Down]=$terminfo[kcud1]
+fi
+
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-[[ -n "${key[Up]}"   ]] &&
+[[ -n "${key[Up]}"   ]] && {
+  zle -N up-line-or-beginning-search
   bindkey -- "${key[Up]}"   up-line-or-beginning-search
-[[ -n "${key[Down]}" ]] &&
+}
+[[ -n "${key[Down]}" ]] && {
+  zle -N down-line-or-beginning-search
   bindkey -- "${key[Down]}" down-line-or-beginning-search
+}
 
 # zle app mode ⟬2
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
