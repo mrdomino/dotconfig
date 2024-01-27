@@ -41,7 +41,10 @@ scpkey() {
 [[ "$(hostname)" = freebsd ]] || alias freebsd='ssh_term freebsd'
 [[ "$(hostname)" = openbsd ]] || alias openbsd='ssh_term openbsd'
 [[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
-[[ "$(hostname)" = nixos ]]   || alias nixos='ssh_term nixos'
+[[ "$(hostname)" = nixos ]]   || {
+  alias nixos='ssh_term nixos'
+  alias wol_nixos='wol f0:de:f1:5f:ee:a9'
+}
 [[ "$(hostname)" = rpi ]]     || alias rpi='ssh_term rpi'
 [[ "$(hostname)" = Mac* ]]    && alias nixvm='ssh_term nixvm'
 [[ "$(hostname)" = Mac* ]]    && alias fbsdvm='ssh_term fbsdvm'
