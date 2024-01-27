@@ -43,7 +43,7 @@ scpkey() {
 [[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
 [[ "$(hostname)" = nixos ]]   || {
   alias nixos='ssh_term nixos'
-  alias wol_nixos='wol f0:de:f1:5f:ee:a9'
+  alias wol_nixos='wol -i 192.168.8.255 f0:de:f1:5f:ee:a9'
 }
 [[ "$(hostname)" = rpi ]]     || alias rpi='ssh_term rpi'
 [[ "$(hostname)" = Mac* ]]    && alias nixvm='ssh_term nixvm'
@@ -87,7 +87,7 @@ alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias :q=sl
 
-autoload -Uz is-at-least zf_cat
+autoload -Uz is-at-least wol zf_cat
 
 # help builtin ⟬2
 autoload -Uz run-help

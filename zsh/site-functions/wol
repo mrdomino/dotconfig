@@ -1,0 +1,11 @@
+if [[ -x $(whence -p wol) ]]; then
+  unfunction wol
+elif [[ -x $(whence -p wakeonlan) ]]; then
+  wol() {
+    wakeonlan "$@"
+  }
+else
+  echo wol: no implementation found >&2
+  return 1
+fi
+wol "$@"
