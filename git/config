@@ -10,6 +10,7 @@
 	lg = log --graph --decorate
 	lga = log --graph --decorate --all
 	lazy = clone --filter=blob:none
+	oneline = log --no-decorate --format=oneline --abbrev-commit
 [diff "lockb"]
 	textconv = bun
 	binary = true
