@@ -13,6 +13,8 @@
 [diff "lockb"]
 	textconv = bun
 	binary = true
+[diff "gpg"]
+	textconv = gpg2 -d --quiet --yes --compress-algo=none --no-encrypt-to --batch --use-agent
 [init]
 	defaultBranch = main
 [rerere]
