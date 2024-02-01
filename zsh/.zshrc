@@ -113,6 +113,10 @@ autoload -Uz compinit && {
 compdef _src src
 compdef _src cosmo
 
+if [ -f /opt/local/libexec/google-cloud-sdk/completion.zsh.inc ]; then
+  source /opt/local/libexec/google-cloud-sdk/completion.zsh.inc
+fi
+
 # keys ⟬1
 bindkey -e
 
