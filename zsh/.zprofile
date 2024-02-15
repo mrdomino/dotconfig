@@ -1,4 +1,5 @@
 [[ -e ~/.bun ]] && export BUN_INSTALL=~/.bun
+[[ -e ~/.gem ]] && export GEM_HOME=~/.gem
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 export EDITOR=vim
 for d in ~{,/src}/cosmo; do
@@ -14,7 +15,7 @@ if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
 fi
 path+=(/{usr/local/go,opt/cosmocc/current}/bin(N))
 path+=(~/bin)
-path+=(~/{go,.{cargo,bun}}/bin(N))
+path+=(~/{go,.{cargo,bun,gem}}/bin(N))
 path+=(~/.local/share/bob/nvim-bin(N))
 path+=(~/venv/bin(N))
 
