@@ -1,10 +1,6 @@
 #!/bin/sh
 set -eux
-if [ ! -f ~/.zshenv ]; then touch ~/.zshenv; fi
-grep -Fx 'ZDOTDIR="$HOME/.config/zsh"' ~/.zshenv >/dev/null ||
-  echo 'ZDOTDIR="$HOME/.config/zsh"' >> ~/.zshenv
-grep -Fx '[[ ! -o interactive ]] && TRAPUSR1(){}' ~/.zshenv >/dev/null ||
-  echo '[[ ! -o interactive ]] && TRAPUSR1(){}' >> ~/.zshenv
+ln -sf .config/zsh/.zshenv ~/.zshenv
 exec zsh -l <<EOF
 set -eux
 [[ -x "$(which nvim)" ]] && exit

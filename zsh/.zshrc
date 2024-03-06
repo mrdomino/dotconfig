@@ -105,9 +105,9 @@ zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 autoload -Uz compinit && {
   if is-at-least 5.9; then
-    compinit -d ~/.zcompdump -w
+    compinit -w
   else
-    compinit -d ~/.zcompdump
+    compinit
   fi
 }
 compdef _src src
