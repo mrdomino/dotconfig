@@ -3,7 +3,7 @@
 setopt extended_glob
 
 # history ⟬1
-HISTFILE=~/.zsh_history
+HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=20000
 SAVEHIST=10000
 setopt hist_expire_dups_first
