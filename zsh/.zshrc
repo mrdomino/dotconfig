@@ -25,6 +25,10 @@ fpath+=(~/.{config,{nix-profile,local}/share}/zsh/site-functions(N))
 [[ -x "$(which rustup)" ]] &&
   fpath+=${$(rustup which rustc)%/*/*}/share/zsh/site-functions
 
+if [[ -d /opt/local/share/zsh/site-functions ]]; then
+  fpath+=(/opt/local/share/zsh/site-functions)
+fi
+
 # aliases ⟬1
 ssh_term() { ssh $@ -t tmux -CC new -As0 }
 edit_zsh() {
