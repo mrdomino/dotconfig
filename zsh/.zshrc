@@ -93,6 +93,27 @@ alias :q=sl
 
 autoload -Uz is-at-least wol zf_cat
 
+# writing folder ⟬2
+# cf. https://github.com/mrdomino/writing-scripts
+wrime() {
+  tmpdir=$(mktemp -d -t writing.XXXXXX)
+  gpg -d "$HOME/Downloads/writing.git.tar.gz.gpg" |
+    tar xz -C "$tmpdir"
+  git clone -- "$tmpdir/writing.git" "$tmpdir/writing"
+  pushd "$tmpdir/writing"
+}
+
+unwrime() {
+  basename=$(basename "$PWD")
+  [[ writing == "$basename" ]] ||
+    { echo "$basename is not writing!" >&2
+      return 1
+    }
+  tmpdir=$(dirname "$PWD")
+  popd &&
+    rm -rf "$tmpdir"
+}
+
 # help builtin ⟬2
 autoload -Uz run-help
 (( ${+aliases[run-help]} )) && unalias run-help
