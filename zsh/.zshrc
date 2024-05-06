@@ -89,6 +89,12 @@ alias venv='source ~/venv/bin/activate'
 }
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
+alias l="ls --color=auto"
+alias ll="ls --color=auto -la"
+c() {
+  cd "$@"
+  l
+}
 alias :q=sl
 
 autoload -Uz is-at-least wol zf_cat
