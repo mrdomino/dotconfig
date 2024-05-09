@@ -60,6 +60,12 @@ scpkey() {
   }
 }
 
+github() {
+  local repo=$1
+  shift
+  git lazy "git@github.com:$repo" "$@"
+}
+
 src() {
   for d in ~{/src,}; do
     if [[ -e "$d/$1" ]]; then
