@@ -168,6 +168,7 @@ require'lazy'.setup {
       add_server('lua-language-server', 'lua_ls')
       add_server('rust-analyzer', 'rust_analyzer')
       add_server('tsserver')
+      add_server('zls')
       lsp_zero.setup_servers(servers)
     end,
     dependencies = {
