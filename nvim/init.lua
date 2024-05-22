@@ -225,21 +225,3 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufWinEnter' }, {
     end
   end,
 })
-
-if vim.version.lt(vim.version(), {0, 10, 0}) then
-  vim.api.nvim_create_autocmd({ 'SwapExists' }, {
-    pattern = '*',
-    group = vim.api.nvim_create_augroup('nvim_swapfile', {}),
-    callback = function()
-      local info = vim.fn.swapinfo(vim.v.swapname)
-      local user = vim.loop.os_get_passwd().username
-      local iswin = 1 == vim.fn.has('win32')
-      if info.error or info.pid <= 0 or (not iswin and info.user ~= user) then
-        vim.v.swapchoice = ''
-        return
-      end
-      vim.v.swapchoice = 'e'
-      vim.notify(('W325: Ignoring swapfile from Nvim process %d'):format(info.pid))
-    end,
-  })
-end
