@@ -124,7 +124,7 @@ require'lazy'.setup {
           autocomplete = false,
           completeopt = 'menu,menuone,noinsert',
         },
-        formatting = lsp_zero.cmp_format(),
+        formatting = lsp_zero.cmp_format({}),
         mapping = cmp.mapping.preset.insert {
           ['<CR>'] = cmp.mapping.confirm { select = false },
           ['<C-Space>'] = cmp.mapping.complete(),
