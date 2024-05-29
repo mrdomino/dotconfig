@@ -9,6 +9,9 @@ for d in ~{,/src}/cosmo; do
   fi
 done
 
+# le sigh...
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
 typeset -U path
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
