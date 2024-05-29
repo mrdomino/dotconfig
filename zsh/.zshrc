@@ -45,6 +45,7 @@ scpkey() {
 [[ "$(hostname)" = freebsd ]] || alias freebsd='ssh_term freebsd'
 [[ "$(hostname)" = openbsd ]] || alias openbsd='ssh_term openbsd'
 [[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
+[[ "$(hostname)" = devbox3 ]] || alias devbox3='ssh_term devbox3'
 [[ "$(hostname)" = nixos ]]   || {
   alias nixos='ssh_term nixos'
   alias wol_nixos='wol -i 192.168.8.255 f0:de:f1:5f:ee:a9'
@@ -88,6 +89,7 @@ _src() {
 [[ -x ~/src/vere/bazel-bin/pkg/vere/urbit ]] &&
   alias urbit-dev=~/src/vere/bazel-bin/pkg/vere/urbit
 
+alias glogin="gcloud auth login ${USER}@stairwell.com"
 alias venv='source ~/venv/bin/activate'
 [[ -x $(which nvim) ]] && {
   alias vim=nvim
