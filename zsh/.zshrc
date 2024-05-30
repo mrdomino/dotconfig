@@ -77,6 +77,9 @@ src() {
 cosmo() {
   src ${1:-cosmo}
 }
+csw() {
+  src ${1:-stairwell}
+}
 _src() {
   local paths=(~{,/src})(N)
   _path_files -/ -W "(${(j: :)paths})"
@@ -150,6 +153,7 @@ autoload -Uz compinit && {
 }
 compdef _src src
 compdef _src cosmo
+compdef _src csw
 
 if [ -f /opt/local/libexec/google-cloud-sdk/completion.zsh.inc ]; then
   source /opt/local/libexec/google-cloud-sdk/completion.zsh.inc
