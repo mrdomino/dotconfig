@@ -15,7 +15,7 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
   () {
     local newshell=$(whence -p zsh)
-    [[ -n "$newshell" ]] && {
+    [[ -n $newshell ]] && {
       echo zsh: \$SHELL: \""$SHELL"\" → \""$newshell"\"
       SHELL=$newshell
     }
