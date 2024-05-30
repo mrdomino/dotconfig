@@ -11,6 +11,16 @@ done
 
 # le sigh...
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
+# le somewhat heavier sigh...
+if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
+  () {
+    local newshell=$(whence -p zsh)
+    [[ -n "$newshell" ]] && {
+      echo zsh: \$SHELL: \""$SHELL"\" → \""$newshell"\"
+      SHELL=$newshell
+    }
+  } >&2
+fi
 
 typeset -U path
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
