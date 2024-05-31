@@ -14,12 +14,12 @@ export CLOUDSDK_PYTHON_SITEPACKAGES=1
 # le somewhat heavier sigh...
 if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
   () {
-    local newshell=$(whence -p zsh)
+    local newshell=$1
     [[ -n $newshell ]] && {
       echo zsh: \$SHELL: \""$SHELL"\" → \""$newshell"\"
       SHELL=$newshell
     }
-  } >&2
+  } "$(whence -p ${0#-})" >&2
 fi
 
 typeset -U path
