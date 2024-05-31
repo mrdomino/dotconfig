@@ -77,7 +77,7 @@ src() {
 cosmo() {
   src ${1:-cosmo}
 }
-csw() {
+sw() {
   src ${1:-stairwell}
 }
 _src() {
@@ -91,7 +91,6 @@ _src() {
 [[ -x ~/src/vere/bazel-bin/pkg/vere/urbit ]] &&
   alias urbit-dev=~/src/vere/bazel-bin/pkg/vere/urbit
 
-alias glogin="gcloud auth login ${USER}@stairwell.com"
 alias venv='source ~/venv/bin/activate'
 [[ -x $(which nvim) ]] && {
   alias vim=nvim
@@ -153,7 +152,7 @@ autoload -Uz compinit && {
 }
 compdef _src src
 compdef _src cosmo
-compdef _src csw
+compdef _src sw
 
 if [ -f /opt/local/libexec/google-cloud-sdk/completion.zsh.inc ]; then
   source /opt/local/libexec/google-cloud-sdk/completion.zsh.inc
