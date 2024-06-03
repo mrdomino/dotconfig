@@ -161,6 +161,10 @@ fi
 # keys ⟬1
 bindkey -e
 
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey '' edit-command-line
+
 backward-kill-dir() {
   local WORDCHARS=${WORDCHARS/\/}
   zle backward-kill-word
