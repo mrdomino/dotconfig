@@ -12,7 +12,7 @@ setopt no_share_history
 
 # prompt ⟬1
 prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
-[[ "$(hostname)" = (#i)mac* ]] || prompt="${prompt}%F{cyan}%m%f:"
+[[ ${(L)HOST[1]} = $HOST[1] ]] && prompt="${prompt}%F{cyan}%m%f:"
 prompt="${prompt}%1~ %# "
 
 # fpath ⟬1
