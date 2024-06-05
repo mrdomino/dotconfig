@@ -1,0 +1,13 @@
+[[ -x $(whence -p sha256sum) ]] && {
+  unfunction sha256sum
+  sha256sum "$@"
+  return $?
+}
+[[ -x $(whence -p shasum) ]] && {
+  sha256sum() {
+    shasum -a 256 "$@"
+  }
+  sha256sum "$@"
+  return $?
+}
+echo sha256sum: no implementation >&2

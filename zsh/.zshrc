@@ -220,5 +220,21 @@ fi
 
 TRAPUSR1() { rehash }
 
+# hacky paranoid hostname verification ⟬1
+autoload -Uz sha256sum
+hostchecksum() {
+  local host
+  if [[ $# -eq 1 ]]; then
+    host=$1
+  else
+    host=${HOST%%.*}
+  fi
+  echo -n "rHSUdV1IFRY6:$host" | sha256sum | cut -f1 -d' '
+}
+if ! grep -Fxq "$(hostchecksum)" "$ZDOTDIR/hostnames"; then
+  echo $'\e[31mzsh: strange hostname:' "$HOST"$'\e[0m' >&2
+  hostchecksum >&2
+fi
+
 # colophon ⟬1
 # vim:fdm=marker fmr=⟬,⟭
