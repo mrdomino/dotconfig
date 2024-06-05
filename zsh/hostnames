@@ -1,3 +1,12 @@
+# Your garden-variety Apple Macintosh will do DHCP like a normal
+# unix computer. But when it gets an IP address, it will then do
+# a reverse DNS lookup on that IP, and happily take whatever the
+# cafe wifi's nameserver returns _to now be the system hostname_
+# so we keep a list of expected hostnames, and print an alert if
+# we get a hostname that's not on that list so that we know when
+# this has happened, mostly because we would like to see the fun
+# new name that we have been assigned. But we don't want to just
+# blanket expose our whole network topology, so these are salted.
 11c583a22840cba1031d9f8236392eae62399495adb0c8cb2bd8388faa707c40
 1a65ab1adb37f5ee712a40cd4a898f1c986b656993adb6c348bf4e3302415691
 2a4f9c685c1fe84353f5083111b86758d621b6af08710a1b250ed018770aa39d
