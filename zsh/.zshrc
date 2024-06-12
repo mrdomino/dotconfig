@@ -44,7 +44,7 @@ scpkey() {
 [[ "$(hostname)" = freebsd ]] || alias freebsd='ssh_term freebsd'
 [[ "$(hostname)" = openbsd ]] || alias openbsd='ssh_term openbsd'
 [[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
-[[ "$(hostname)" = devbox3 ]] || alias devbox3='ssh_term devbox3'
+[[ "$(hostname)" = devbox ]]  || alias devbox='ssh_term devbox'
 [[ "$(hostname)" = nixos ]]   || {
   alias nixos='ssh_term nixos'
   alias wol_nixos='wol -i 192.168.8.255 f0:de:f1:5f:ee:a9'
