@@ -100,6 +100,7 @@ alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias l="ls --color=auto"
 alias ll="ls --color=auto -la"
+alias scp="scp -o ForwardAgent=yes"
 c() {
   cd "$@"
   l
