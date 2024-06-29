@@ -96,6 +96,10 @@ alias venv='source ~/venv/bin/activate'
   alias vim=nvim
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
+
+! type fd >/dev/null 2>&1 && whence fdfind >/dev/null 2>&1 && {
+  alias fd=fdfind
+}
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias l="ls --color=auto"
