@@ -93,6 +93,7 @@ _src() {
 
 alias venv='source ~/venv/bin/activate'
 [[ -x $(which nvim) ]] && {
+  alias vi=nvim
   alias vim=nvim
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
