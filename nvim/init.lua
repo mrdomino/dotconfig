@@ -111,7 +111,24 @@ require'lazy'.setup {
     end,
   },
 
+  { 'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
+  { 'Bilal2453/luvit-meta', lazy = true },
+
   { 'hrsh7th/nvim-cmp',
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = 'lazydev',
+        group_index = 0,
+      })
+    end,
     event = 'InsertEnter',
     config = function ()
       local lsp_zero = require'lsp-zero'
@@ -145,7 +162,6 @@ require'lazy'.setup {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function ()
       local lsp_zero = require'lsp-zero'
-      require'neodev'.setup {}
       lsp_zero.extend_lspconfig()
       lsp_zero.on_attach(function(_, bufnr)
         lsp_zero.default_keymaps {
@@ -173,7 +189,6 @@ require'lazy'.setup {
       lsp_zero.setup_servers(servers)
     end,
     dependencies = {
-      'folke/neodev.nvim',
       'hrsh7th/cmp-nvim-lsp',
     },
   },
