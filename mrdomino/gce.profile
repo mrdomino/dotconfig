@@ -1,8 +1,4 @@
-ZSH=$(command -v zsh-5.9 2>/dev/null)
-[[ -z "$ZSH" ]] && ZSH=$(command -v zsh 2>/dev/null)
-if [[ -n "$ZSH" ]]; then
-  exec -a "-${ZSH##*/}" "$ZSH"
-fi
+command -v zsh >/dev/null 2>&1 && exec -l zsh
 #                                      ____....---\
 #                 _____.....----"""""""            \
 # ------""""""""""                                 \
