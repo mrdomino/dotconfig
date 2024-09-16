@@ -159,6 +159,9 @@ autoload -Uz compinit && {
 compdef _src src
 compdef _src cosmo
 compdef _src sw
+whence fdfind >/dev/null 2>&1 && {
+  compdef _fd fdfind
+}
 
 if [ -f /opt/local/libexec/google-cloud-sdk/completion.zsh.inc ]; then
   source /opt/local/libexec/google-cloud-sdk/completion.zsh.inc
