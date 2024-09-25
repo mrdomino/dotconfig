@@ -163,7 +163,7 @@ whence fdfind >/dev/null 2>&1 && {
   compdef _fd fdfind
 }
 
-local gcloud_paths=(/opt/local/libexec /usr/share)
+local gcloud_paths=(~ /opt/local/libexec /usr/share)
 for p in $gcloud_paths; do
   if [[ -f $p/google-cloud-sdk/completion.zsh.inc ]]; then
     source $p/google-cloud-sdk/completion.zsh.inc
