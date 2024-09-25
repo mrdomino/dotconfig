@@ -31,6 +31,7 @@ path+=(~/bin)
 path+=(~/{go,.{cargo,bun,gem}}/bin(N))
 path+=(~/.local/share/bob/nvim-bin(N))
 path+=(~/venv/bin(N))
+path+=(~/.npm-packages/bin(N))
 
 typeset -U manpath
 manpath+=(~/.nix-profile/share/man(N))
