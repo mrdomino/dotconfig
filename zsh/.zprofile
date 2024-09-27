@@ -2,6 +2,7 @@
 [[ -e ~/.gem ]] && export GEM_HOME=~/.gem
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 export EDITOR=vim
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 for d in ~{,/src}/cosmo; do
   if [ -e $d ]; then
     export COSMO=$d
@@ -11,6 +12,7 @@ done
 
 # le sigh...
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
 # le somewhat heavier sigh...
 if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
   () {

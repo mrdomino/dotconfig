@@ -1,3 +1,3 @@
-set noexpandtab
-set linebreak
-set breakindent
+setlocal noexpandtab
+setlocal linebreak
+setlocal breakindent
