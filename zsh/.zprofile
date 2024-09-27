@@ -37,6 +37,9 @@ path+=(~/.npm-packages/bin(N))
 path+=(~/google-cloud-sdk/bin(N))
 
 typeset -U manpath
+manpath=('')
 manpath+=(~/.nix-profile/share/man(N))
+manpath+=(~/.local/share/man(N))
+export MANPATH
 
 [[ -x $(which nvim) ]] && EDITOR=$(which nvim)
