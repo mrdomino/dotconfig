@@ -81,6 +81,9 @@ cosmo() {
 sw() {
   src ${1:-stairwell}
 }
+swc() {
+  src ${1:-stairwell-corp}
+}
 _src() {
   local paths=(~{,/src})(N)
   _path_files -/ -W "(${(j: :)paths})"
