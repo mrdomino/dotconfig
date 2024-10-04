@@ -79,7 +79,7 @@ cosmo() {
   src ${1:-cosmo}
 }
 sw() {
-  src ${1:-stairwell}
+  src ${1:-depot/src/stairwell}
 }
 swc() {
   src ${1:-stairwell-corp}
