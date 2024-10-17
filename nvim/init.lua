@@ -218,17 +218,6 @@ require'lazy'.setup {
     },
   },
 
-  { 'dpayne/CodeGPT.nvim',
-    cmd = 'Chat',
-    config = function ()
-      require'codegpt.config'
-    end,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-    },
-  },
-
   { 'ray-x/go.nvim',
     dependencies = {
       'ray-x/guihua.lua',
@@ -241,6 +230,23 @@ require'lazy'.setup {
     event = {'CmdlineEnter'},
     ft = {'go', 'gomod'},
     build = ':lua require("go.install").update_all_sync()',
+  },
+
+  { 'frankroeder/parrot.nvim',
+    dependencies = {
+      'ibhagwan/fzf-lua',
+      'nvim-lua/plenary.nvim',
+      'rcarriga/nvim-notify',
+    },
+    config = function()
+      require'parrot'.setup {
+        providers = {
+          anthropic = {
+            api_key = os.getenv 'ANTHROPIC_API_KEY',
+          },
+        },
+      }
+    end,
   },
 }
 
