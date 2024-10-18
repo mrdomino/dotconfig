@@ -253,6 +253,15 @@ require'lazy'.setup {
           },
         },
       }
+      vim.keymap.set('n', '<leader>pn', '<cmd>PrtChatNew split<cr>')
+      vim.keymap.set('n', '<leader>pc', '<cmd>PrtChatToggle split<cr>')
+      vim.keymap.set('n', '<leader>pa', '<cmd>PrtAsk<cr>')
+      vim.keymap.set('v', '<leader>pi', ":'<,'>PrtImplement<cr>")
+      vim.keymap.set('v', '<leader>pr', ":'<,'>PrtRewrite<cr>")
+      vim.keymap.set('v', '<leader>pt', ":'<,'>PrtRetry<cr>")
+      vim.keymap.set('v', '<leader>pa', ":'<,'>PrtAppend<cr>")
+      vim.keymap.set('v', '<leader>pp', ":'<,'>PrtPrepend<cr>")
+      vim.keymap.set('v', '<leader>py', ":'<,'>PrtChatPaste split<cr>")
     end,
   },
 }
