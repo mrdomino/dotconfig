@@ -5,6 +5,8 @@
 [gpg]
 	format = ssh
 [alias]
+	co = checkout
+	rb = rebase
 	lg = log --graph --decorate
 	lga = log --graph --decorate --all
 	lazy = clone --filter=blob:none
