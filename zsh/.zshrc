@@ -208,18 +208,22 @@ autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 
 # fzf ⟬2
 
-() {
-local fzf_paths=(/opt/local/share/fzf/shell /usr/share/doc/fzf/examples)
-for p in $fzf_paths; do
-  if [[ -f $p/completion.zsh ]]; then
-    source $p/completion.zsh
-    if [[ -f $p/key-bindings.zsh ]]; then
-      source $p/key-bindings.zsh
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+else
+  () {
+  local fzf_paths=(/opt/local/share/fzf/shell /usr/share/doc/fzf/examples)
+  for p in $fzf_paths; do
+    if [[ -f $p/completion.zsh ]]; then
+      source $p/completion.zsh
+      if [[ -f $p/key-bindings.zsh ]]; then
+        source $p/key-bindings.zsh
+      fi
+      break
     fi
-    break
-  fi
-done
-}
+  done
+  }
+fi
 
 # zle app mode ⟬2
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
