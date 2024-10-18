@@ -206,6 +206,15 @@ autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
   bindkey -- "${key[Down]}" down-line-or-beginning-search
 }
 
+# fzf ⟬2
+
+if [[ -f /opt/local/share/fzf/shell/key-bindings.zsh ]]; then
+  source /opt/local/share/fzf/shell/key-bindings.zsh
+fi
+if [[ -f /opt/local/share/fzf/shell/completion.zsh ]]; then
+  source /opt/local/share/fzf/shell/completion.zsh
+fi
+
 # zle app mode ⟬2
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
   autoload -Uz add-zle-hook-widget
