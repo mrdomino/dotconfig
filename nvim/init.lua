@@ -278,11 +278,37 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufWinEnter' }, {
   end,
 })
 
-local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
+local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*.go',
   callback = function()
     require('go.format').goimports()
   end,
   group = format_sync_grp,
 })
+
+local gopls_setup = (function()
+  local setup_done = false
+  return function()
+    if setup_done or not vim.loop.fs_stat('./tools/gopackagesdriver.sh') then
+      return
+    end
+    setup_done = true
+    require'lspconfig'.gopls.setup {
+      settings = {
+        gopls = {
+          env = {
+            GOPACKAGESDRIVER = './tools/gopackagesdriver.sh',
+          },
+          directoryFilters = {
+            '-bazel-bin',
+            '-bazel-out',
+            '-bazel-testlogs',
+            '-bazel-stairwell',
+          },
+        },
+      },
+    }
+  end
+end)()
+gopls_setup()
