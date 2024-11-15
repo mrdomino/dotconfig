@@ -236,7 +236,7 @@ require'lazy'.setup {
     end,
     event = {'CmdlineEnter'},
     ft = {'go', 'gomod'},
-    build = ':lua require("go.install").update_all_sync()',
+    build = ':lua require("go.install").update_all()',
   },
 
   { 'frankroeder/parrot.nvim',
