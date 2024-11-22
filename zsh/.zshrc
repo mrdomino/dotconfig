@@ -256,6 +256,10 @@ fi
 
 TRAPUSR1() { rehash }
 
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
 # iTerm2 integration ⟬2
 export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
 source "$ZDOTDIR/iterm2.zsh"
