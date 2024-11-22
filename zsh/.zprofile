@@ -12,10 +12,6 @@ done
 
 # le sigh...
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
-# le further sigh...
-if [[ -f /usr/bin/python3 ]]; then
-  export CLOUDSDK_PYTHON=/usr/bin/python3
-fi
 
 # le somewhat heavier sigh...
 if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
