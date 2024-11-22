@@ -24,33 +24,6 @@ if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
   } "$(whence -p ${0#-})" >&2
 fi
 
-if [[ -d ~/.pyenv/bin ]]; then
-  export PYENV_ROOT=~/.pyenv
-  path+=(~/.pyenv/bin)
-
-  # slightly saner version of `eval "$(pyenv init -)"`...
-  path=(~/.pyenv/shims $path)
-  export PYENV_SHELL=zsh
-  source ~/.pyenv/completions/pyenv.zsh
-  command pyenv rehash 2>/dev/null
-  pyenv() {
-    local command
-    command="${1:-}"
-    if [ "$#" -gt 0 ]; then
-      shift
-    fi
-
-    case "$command" in
-    activate|deactivate|rehash|shell)
-      eval "$(pyenv "sh-$command" "$@")"
-      ;;
-    *)
-      command pyenv "$command" "$@"
-      ;;
-    esac
-  }
-fi
-
 typeset -U path
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
