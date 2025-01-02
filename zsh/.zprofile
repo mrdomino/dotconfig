@@ -25,6 +25,7 @@ if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
 fi
 
 typeset -U path
+# Load nix path here so that it doesn't clobber our path
 if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
   source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
 fi
