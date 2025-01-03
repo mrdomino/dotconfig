@@ -96,10 +96,14 @@ _src() {
   alias urbit-dev=~/src/vere/bazel-bin/pkg/vere/urbit
 
 alias venv='source ~/venv/bin/activate'
-[[ -x $(which nvim) ]] && {
+whence nvim >/dev/null 2>&1 && {
   alias vi=nvim
   alias vim=nvim
   alias vimconf='nvim ~/.config/nvim/init.lua'
+}
+
+! type bazel >/dev/null 2>&1 && whence bazelisk >/dev/null 2>&1 && {
+  alias bazel=bazelisk
 }
 
 ! type fd >/dev/null 2>&1 && whence fdfind >/dev/null 2>&1 && {
