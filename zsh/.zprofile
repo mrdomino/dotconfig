@@ -1,4 +1,3 @@
-export LANG=en_US.UTF-8
 [[ -e ~/.bun ]] && export BUN_INSTALL=~/.bun
 [[ -e ~/.gem ]] && export GEM_HOME=~/.gem
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'

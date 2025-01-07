@@ -4,3 +4,5 @@ export ZDOTDIR="$HOME/.config/zsh"
 if [[ -f "$ZDOTDIR/.zshenv.local" ]]; then
   source "$ZDOTDIR/.zshenv.local"
 fi
+
+export LANG=${LANG:-en_US.UTF-8}
