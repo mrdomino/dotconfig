@@ -2,6 +2,9 @@
 
 setopt extended_glob
 
+local _local=0
+[[ ${(U)HOST[1]} = $HOST[1] ]] && _local=1
+
 # history ⟬1
 HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=20000
@@ -12,7 +15,7 @@ setopt no_share_history
 
 # prompt ⟬1
 prompt='%(?.%F{green}✔.%F{red}☓%(1?.. %?))%f '
-[[ ${(L)HOST[1]} = $HOST[1] ]] && prompt="${prompt}%F{cyan}%m%f:"
+(( _local )) || prompt="${prompt}%F{cyan}%m%f:"
 prompt="${prompt}%1~ %# "
 
 # fpath ⟬1
@@ -40,21 +43,24 @@ scpkey() {
   scp ${2:-~/.ssh/joshin.pub} $1:.ssh/joshin.pub
 }
 
-[[ "$(hostname)" = cuda ]]    || alias cuda='ssh_term cuda'
-[[ "$(hostname)" = freebsd ]] || alias freebsd='ssh_term freebsd'
-[[ "$(hostname)" = openbsd ]] || alias openbsd='ssh_term openbsd'
-[[ "$(hostname)" = jce ]]     || alias jce='ssh_term jce'
-[[ "$(hostname)" = devbox ]]  || alias devbox='ssh_term devbox'
-[[ "$(hostname)" = devbox3 ]] || alias devbox3='ssh_term devbox3'
-[[ "$(hostname)" = nixos ]]   || {
+[[ "$HOST" = cuda ]]    || alias cuda='ssh_term cuda'
+[[ "$HOST" = freebsd ]] || alias freebsd='ssh_term freebsd'
+[[ "$HOST" = openbsd ]] || alias openbsd='ssh_term openbsd'
+[[ "$HOST" = jce ]]     || alias jce='ssh_term jce'
+[[ "$HOST" = devbox ]]  || alias devbox='ssh_term devbox'
+[[ "$HOST" = devbox3 ]] || alias devbox3='ssh_term devbox3'
+[[ "$HOST" = nixos ]]   || {
   alias nixos='ssh_term nixos'
   alias wol_nixos='wol -i 192.168.8.255 f0:de:f1:5f:ee:a9'
 }
-[[ "$(hostname)" = rpi ]]     || alias rpi='ssh_term rpi'
-[[ "$(hostname)" = Mac* ]]    && alias nixvm='ssh_term nixvm'
-[[ "$(hostname)" = Mac* ]]    && alias fbsdvm='ssh_term fbsdvm'
+[[ "$HOST" = rpi ]]     || alias rpi='ssh_term rpi'
+(( _local ))            && {
+  alias alpine='ssh_term alpine'
+  alias nixvm='ssh_term nixvm'
+  alias fbsdvm='ssh_term fbsdvm'
+}
 
-[[ "$(hostname)" = nix* ]] && {
+[[ "$HOST" = nix* ]] && {
   nixedit() {
     sudo -e "${1:-/etc/nixos/configuration.nix}" &&
       sudo nixos-rebuild switch
