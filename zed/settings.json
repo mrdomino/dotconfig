@@ -14,6 +14,7 @@
     },
     "version": "2"
   },
+  "tab_size": 2,
   "telemetry": {
     "diagnostics": false,
     "metrics": true
