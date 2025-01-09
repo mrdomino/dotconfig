@@ -18,7 +18,8 @@ if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
   () {
     local newshell=$1
     [[ -n $newshell ]] && {
-      echo zsh: \$SHELL: \""$SHELL"\" → \""$newshell"\"
+      [[ -o interactive ]] &&
+        echo zsh: \$SHELL: \""$SHELL"\" → \""$newshell"\" >&2
       SHELL=$newshell
     }
   } "$(whence -p ${0#-})" >&2
