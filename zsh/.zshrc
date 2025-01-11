@@ -108,7 +108,6 @@ whence nvim >/dev/null 2>&1 && {
 ! type bazel >/dev/null 2>&1 && whence bazelisk >/dev/null 2>&1 && {
   alias bazel=bazelisk
 }
-
 ! type fd >/dev/null 2>&1 && whence fdfind >/dev/null 2>&1 && {
   alias fd=fdfind
 }
