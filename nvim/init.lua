@@ -46,6 +46,7 @@ require'lazy'.setup {
           'javascript',
           'json',
           'lua',
+          'markdown',
           'python',
           'ruby',
           'rust',
