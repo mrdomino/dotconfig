@@ -233,7 +233,6 @@ require'lazy'.setup {
     dependencies = {
       'ibhagwan/fzf-lua',
       'nvim-lua/plenary.nvim',
-      'rcarriga/nvim-notify',
     },
     config = function()
       require'parrot'.setup {
