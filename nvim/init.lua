@@ -13,7 +13,7 @@ vim.g.mapleader = ';'
 vim.g.localleader = '\\'
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     'git', 'clone', '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git', '--branch=stable', lazypath,
@@ -97,76 +97,79 @@ require'lazy'.setup {
     opts = { },
   },
 
-  { 'VonHeikemen/lsp-zero.nvim',
-    branch = 'v3.x',
-    lazy = true,
-    config = function () end,
-    init = function ()
-      vim.g.lsp_zero_extend_cmp = 0
-      vim.g.lsp_zero_extend_lspconfig = 0
-    end,
-  },
-
   { 'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
       library = {
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
       },
     },
   },
-  { 'Bilal2453/luvit-meta', lazy = true },
 
   { 'hrsh7th/nvim-cmp',
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = 'lazydev',
-        group_index = 0,
-      })
-    end,
     event = 'InsertEnter',
     config = function ()
-      local lsp_zero = require'lsp-zero'
-      lsp_zero.extend_cmp()
       local cmp = require'cmp'
-      local cmp_action = lsp_zero.cmp_action()
+
       cmp.setup {
         preselect = 'item',
-        completion = {
+        completion  = {
           autocomplete = false,
           completeopt = 'menu,menuone,noinsert',
         },
-        formatting = lsp_zero.cmp_format({}),
+        sources = {
+          { name = 'lazydev', group_index = 0 },
+          { name = 'nvim_lsp' },
+        },
         mapping = cmp.mapping.preset.insert {
           ['<CR>'] = cmp.mapping.confirm { select = false },
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
-          ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-          ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-        }
+        },
+        snippet = {
+          expand = function(args)
+            vim.snippet.expand(args.body)
+          end,
+        },
       }
     end,
-    dependencies = {
-      { 'L3MON4D3/LuaSnip' },
-    },
   },
 
   { 'neovim/nvim-lspconfig',
-    cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+    cmd = 'LspInfo',
     event = { 'BufReadPre', 'BufNewFile' },
+    dependencies = {
+      { 'hrsh7th/cmp-nvim-lsp' },
+    },
     config = function ()
-      local lsp_zero = require'lsp-zero'
-      lsp_zero.extend_lspconfig()
-      lsp_zero.on_attach(function(_, bufnr)
-        lsp_zero.default_keymaps {
-          buffer = bufnr,
-          preserve_mappings = false,
-        }
-        vim.keymap.set('n', '<localleader>ls', '<cmd>LspStop<cr>')
-        vim.keymap.set('n', '<localleader>lt', '<cmd>LspStart<cr>')
-      end)
+      local lsp_defaults = require('lspconfig').util.default_config
+      lsp_defaults.capabilities = vim.tbl_deep_extend(
+        'force',
+        lsp_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities()
+      )
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        desc = 'LSP actions',
+        callback = function(event)
+          local opts = { buffer = event.buf }
+          vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+          vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+          vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+          vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+          vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+          vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+          vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+          vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+          vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+
+          vim.keymap.set('n', '<localleader>ls', '<cmd>LspStop<cr>')
+          vim.keymap.set('n', '<localleader>lt', '<cmd>LspStart<cr>')
+        end,
+      })
+
       local servers = {}
       local add_server = function(exe, name)
         if not name then
@@ -183,11 +186,10 @@ require'lazy'.setup {
       add_server('rust-analyzer', 'rust_analyzer')
       add_server('tsserver', 'ts_ls')
       add_server('zls')
-      lsp_zero.setup_servers(servers)
+      for _, name in ipairs(servers) do
+        require('lspconfig')[name].setup({})
+      end
     end,
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-    },
   },
 
   { 'pmizio/typescript-tools.nvim',
@@ -257,7 +259,7 @@ require'lazy'.setup {
 
 vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufWinEnter' }, {
   pattern = '*',
-  group = vim.api.nvim_create_augroup('mine', {}),
+  group = vim.api.nvim_create_augroup('TextColumn', {}),
   callback = function()
     if (vim.bo.textwidth or 0) > 0 then
       vim.wo.colorcolumn = '+1'
