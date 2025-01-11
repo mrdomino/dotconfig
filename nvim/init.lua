@@ -54,6 +54,7 @@ require'lazy'.setup {
           'tsx',
           'typescript',
           'vim',
+          'vimdoc',
         },
         ignore_install = {},
         indent = { enable = true },
@@ -108,6 +109,12 @@ require'lazy'.setup {
   },
 
   { 'hrsh7th/nvim-cmp',
+    dependencies = {
+      { 'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        build = 'make install_jsregexp',
+      }
+    },
     event = 'InsertEnter',
     config = function ()
       local cmp = require'cmp'
@@ -130,7 +137,7 @@ require'lazy'.setup {
         },
         snippet = {
           expand = function(args)
-            vim.snippet.expand(args.body)
+            require('luasnip').lsp_expand(args.body)
           end,
         },
       }
