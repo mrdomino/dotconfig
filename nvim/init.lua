@@ -179,9 +179,9 @@ require'lazy'.setup {
       })
 
       local servers = {}
-      local add_server = function(exe, name)
-        if not name then
-          name = exe
+      local add_server = function(name, exe)
+        if not exe then
+          exe = name
         end
         if vim.fn.executable(exe) ~= 0 then
           table.insert(servers, name)
@@ -189,10 +189,10 @@ require'lazy'.setup {
       end
       add_server('clangd')
       add_server('gopls')
-      add_server('lua-language-server', 'lua_ls')
-      add_server('nil', 'nil_ls')
-      add_server('rust-analyzer', 'rust_analyzer')
-      add_server('tsserver', 'ts_ls')
+      add_server('lua_ls', 'lua-language-server')
+      add_server('nil_ls', 'nil')
+      add_server('rust_analyzer', 'rust-analyzer')
+      add_server('ts_ls', 'tsserver')
       add_server('zls')
       for _, name in ipairs(servers) do
         require('lspconfig')[name].setup({})
