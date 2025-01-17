@@ -149,7 +149,8 @@ require'lazy'.setup {
     cmd = 'LspInfo',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'j-hui/fidget.nvim', opts = {} },
+      'hrsh7th/cmp-nvim-lsp',
     },
     config = function ()
       local lsp_defaults = require('lspconfig').util.default_config
