@@ -181,23 +181,41 @@ require'lazy'.setup {
       })
 
       local servers = {}
-      local add_server = function(name, exe)
-        if not exe then
-          exe = name
-        end
+      local add_server = function(args)
+        local name = args[1]
+        local exe = args.exe or name
+        local opts = args.opts or {}
         if vim.fn.executable(exe) ~= 0 then
-          table.insert(servers, name)
+          servers[name] = opts
         end
       end
-      add_server('clangd')
-      add_server('gopls')
-      add_server('lua_ls', 'lua-language-server')
-      add_server('nil_ls', 'nil')
-      add_server('rust_analyzer', 'rust-analyzer')
-      add_server('ts_ls', 'tsserver')
-      add_server('zls')
-      for _, name in ipairs(servers) do
-        require('lspconfig')[name].setup({})
+      add_server{'clangd'}
+      add_server{'gopls'}
+      add_server{'lua_ls',        exe = 'lua-language-server' }
+      add_server{'nil_ls',        exe = 'nil' }
+      add_server{'rust_analyzer', exe = 'rust-analyzer' }
+      add_server{'ts_ls',         exe = 'tsserver' }
+      add_server{'yamlls',        exe = 'yaml-language-server',
+        opts = {
+          settings = {
+            yaml = {
+              schemas = {
+                kubernetes = "k8s-*.yaml",
+                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
+                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+              },
+            },
+          },
+        },
+      }
+      add_server{'zls'}
+      for name, opts in pairs(servers) do
+        require('lspconfig')[name].setup(opts)
       end
     end,
   },
