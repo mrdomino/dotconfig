@@ -8,6 +8,7 @@ vim.opt.showbreak = '↪ '
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+vim.opt.breakindent = true
 vim.opt.mouse = ''
 vim.g.mapleader = ';'
 vim.g.localleader = '\\'
