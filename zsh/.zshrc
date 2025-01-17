@@ -114,6 +114,9 @@ whence nvim >/dev/null 2>&1 && {
 ! type fd >/dev/null 2>&1 && whence fdfind >/dev/null 2>&1 && {
   alias fd=fdfind
 }
+! type kustomize >/dev/null 2>&1 && whence kubectl >/dev/null 2>&1 && {
+  alias kustomize='kubectl kustomize'
+}
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias l="ls --color=auto"
