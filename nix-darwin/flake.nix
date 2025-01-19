@@ -52,9 +52,9 @@
             nixfmt-rfc-style
             nmap
             nodejs
+            p7zip
             pass
             passage
-            p7zip
             ripgrep
             tree-sitter
           ];
