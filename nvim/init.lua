@@ -20,7 +20,7 @@ if not vim.uv.fs_stat(lazypath) then
     'https://github.com/folke/lazy.nvim.git', '--branch=stable', lazypath,
   }
 end
-vim.opt.runtimepath:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath)
 
 require'lazy'.setup {
   { 'nvim-treesitter/nvim-treesitter',
