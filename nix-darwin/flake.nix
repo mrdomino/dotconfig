@@ -19,6 +19,7 @@
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
           environment.systemPackages = with pkgs; [
+            age
             bazelisk
             bun
             direnv
@@ -50,6 +51,8 @@
             nixfmt-rfc-style
             nmap
             nodejs
+            pass
+            passage
             p7zip
             ripgrep
             tree-sitter
