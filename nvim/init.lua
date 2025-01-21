@@ -13,7 +13,7 @@ vim.opt.mouse = ''
 vim.g.mapleader = ';'
 vim.g.localleader = '\\'
 
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     'git', 'clone', '--filter=blob:none',
@@ -22,12 +22,13 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require'lazy'.setup {
-  { 'nvim-treesitter/nvim-treesitter',
+require('lazy').setup {
+  {
+    'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    config = function ()
-      require'nvim-treesitter.configs'.setup {
-        auto_install = vim.fn.executable('tree-sitter') ~= 0,
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        auto_install = vim.fn.executable 'tree-sitter' ~= 0,
         ensure_installed = {
           'bash',
           'beancount',
@@ -59,19 +60,24 @@ require'lazy'.setup {
         },
         ignore_install = {},
         indent = { enable = true },
-        modules = { },
+        modules = {},
         sync_install = false,
       }
     end,
     keys = {
-      { '<localleader>th',
-        function () vim.cmd.TSBufToggle 'highlight' end,
-        desc = 'Toggle highlighting'
+      {
+        '<localleader>th',
+        function()
+          vim.cmd.TSBufToggle 'highlight'
+        end,
+        desc = 'Toggle highlighting',
       },
     },
     lazy = false,
   },
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x',
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
     cmd = 'Telescope',
     dependencies = 'nvim-lua/plenary.nvim',
     keys = {
@@ -84,23 +90,26 @@ require'lazy'.setup {
       },
     },
   },
-  { 'mbbill/undotree',
+  {
+    'mbbill/undotree',
     cmd = { 'UndotreeToggle' },
     keys = {
       { '<leader>u', vim.cmd.UndotreeToggle, desc = 'undo tree' },
     },
   },
 
-  { 'folke/which-key.nvim',
+  {
+    'folke/which-key.nvim',
     event = 'VeryLazy',
     init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    opts = { },
+    opts = {},
   },
 
-  { 'folke/lazydev.nvim',
+  {
+    'folke/lazydev.nvim',
     ft = 'lua',
     opts = {
       library = {
@@ -109,20 +118,22 @@ require'lazy'.setup {
     },
   },
 
-  { 'hrsh7th/nvim-cmp',
+  {
+    'hrsh7th/nvim-cmp',
     dependencies = {
-      { 'L3MON4D3/LuaSnip',
+      {
+        'L3MON4D3/LuaSnip',
         version = 'v2.*',
         build = 'make install_jsregexp',
-      }
+      },
     },
     event = 'InsertEnter',
-    config = function ()
-      local cmp = require'cmp'
+    config = function()
+      local cmp = require 'cmp'
 
       cmp.setup {
         preselect = 'item',
-        completion  = {
+        completion = {
           autocomplete = false,
           completeopt = 'menu,menuone,noinsert',
         },
@@ -145,14 +156,15 @@ require'lazy'.setup {
     end,
   },
 
-  { 'neovim/nvim-lspconfig',
+  {
+    'neovim/nvim-lspconfig',
     cmd = 'LspInfo',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
     },
-    config = function ()
+    config = function()
       local lsp_defaults = require('lspconfig').util.default_config
       lsp_defaults.capabilities = vim.tbl_deep_extend(
         'force',
@@ -213,16 +225,17 @@ require'lazy'.setup {
           },
         },
       }
-      add_server{'zls'}
+      add_server { 'zls' }
       for name, opts in pairs(servers) do
         require('lspconfig')[name].setup(opts)
       end
     end,
   },
 
-  { 'pmizio/typescript-tools.nvim',
-    config = function ()
-      require'typescript-tools'.setup {}
+  {
+    'pmizio/typescript-tools.nvim',
+    config = function()
+      require('typescript-tools').setup {}
       vim.keymap.set('n', '<leader>tso', '<cmd>TSToolsOrganizeImports<cr>')
       vim.keymap.set('n', '<leader>tss', '<cmd>TSToolsSortImports<cr>')
       vim.keymap.set('n', '<leader>tsi', '<cmd>TSToolsRemoveUnusedImports<cr>')
@@ -245,27 +258,29 @@ require'lazy'.setup {
     },
   },
 
-  { 'ray-x/go.nvim',
+  {
+    'ray-x/go.nvim',
     dependencies = {
       'ray-x/guihua.lua',
       'neovim/nvim-lspconfig',
       'nvim-treesitter/nvim-treesitter',
     },
-    config = function ()
-      require'go'.setup()
+    config = function()
+      require('go').setup()
     end,
-    event = {'CmdlineEnter'},
-    ft = {'go', 'gomod'},
+    event = { 'CmdlineEnter' },
+    ft = { 'go', 'gomod' },
     build = ':lua require("go.install").update_all()',
   },
 
-  { 'frankroeder/parrot.nvim',
+  {
+    'frankroeder/parrot.nvim',
     dependencies = {
       'ibhagwan/fzf-lua',
       'nvim-lua/plenary.nvim',
     },
     config = function()
-      require'parrot'.setup {
+      require('parrot').setup {
         providers = {
           anthropic = {
             api_key = os.getenv 'ANTHROPIC_API_KEY',
