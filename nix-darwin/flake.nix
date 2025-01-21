@@ -56,6 +56,7 @@
             pass
             passage
             ripgrep
+            stylua
             tree-sitter
           ];
 
