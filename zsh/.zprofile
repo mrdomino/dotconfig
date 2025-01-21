@@ -10,10 +10,6 @@ for d in ~{,/src}/cosmo; do
   fi
 done
 
-# le sigh...
-export CLOUDSDK_PYTHON_SITEPACKAGES=1
-
-# le somewhat heavier sigh...
 if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
   () {
     local newshell=$1
