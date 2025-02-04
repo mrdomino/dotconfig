@@ -6,6 +6,7 @@
 	format = ssh
 [alias]
 	co = checkout
+	dc = diff --cached
 	rb = rebase
 	lg = log --graph --decorate
 	lga = log --graph --decorate --all
