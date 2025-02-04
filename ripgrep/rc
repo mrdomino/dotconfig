@@ -1,1 +1,2 @@
 --type-add=proto:*.proto
+--type-add=starlark:*.bzl
