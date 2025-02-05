@@ -40,6 +40,7 @@
                 kubectl
               ]
             ))
+            graphviz
             htop
             jq
             k9s
