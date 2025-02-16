@@ -53,6 +53,7 @@
             nixfmt-rfc-style
             nmap
             nodejs
+            par
             p7zip
             pass
             passage
