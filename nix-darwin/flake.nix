@@ -29,6 +29,7 @@
             fzf
             git
             git-absorb
+            gnumake
             go
             (google-cloud-sdk.withExtraComponents (
               with google-cloud-sdk.components;
