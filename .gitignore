@@ -3,10 +3,12 @@
 /configstore
 /dlv
 /gcloud
+/google-chrome
 /go/telemetry
 /htop
 /iterm2
 /nextjs-nodejs
+/packer
 /pulse
 /swell
 /systemd
