@@ -73,6 +73,12 @@
             };
           };
 
+          security.pam.services.sudo_local = {
+            enable = true;
+            touchIdAuth = true;
+            watchIdAuth = false;
+          };
+
           system = {
             configurationRevision = self.rev or self.dirtyRev or null;
             # Used for backwards compatibility, please read the changelog
