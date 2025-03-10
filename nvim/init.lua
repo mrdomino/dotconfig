@@ -43,7 +43,6 @@ require('lazy').setup {
           'gosum',
           'gotmpl',
           'gowork',
-          'hoon',
           'html',
           'javascript',
           'json',
