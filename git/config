@@ -23,3 +23,5 @@
 	enabled = true
 [clone]
 	defaultRemoteName = up
+[commit]
+	cleanup = scissors
