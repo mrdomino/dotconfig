@@ -1,8 +1,9 @@
+export TZ=America/Los_Angeles
+export EDITOR=vim
+export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 [[ -e ~/.bun ]] && export BUN_INSTALL=~/.bun
 [[ -e ~/.gem ]] && export GEM_HOME=~/.gem
-export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
-export EDITOR=vim
-export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
 for d in ~{,/src}/cosmo; do
   if [ -e $d ]; then
     export COSMO=$d
