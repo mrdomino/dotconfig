@@ -47,6 +47,7 @@ scpkey() {
 [[ "$HOST" = freebsd ]] || alias freebsd='ssh_term freebsd'
 [[ "$HOST" = openbsd ]] || alias openbsd='ssh_term openbsd'
 [[ "$HOST" = jce ]]     || alias jce='ssh_term jce'
+[[ "$HOST" = dev ]]     || alias dev='ssh_term dev'
 [[ "$HOST" = devbox ]]  || alias devbox='ssh_term devbox'
 [[ "$HOST" = devbox3 ]] || alias devbox3='ssh_term devbox3'
 [[ "$HOST" = nixos ]]   || {
