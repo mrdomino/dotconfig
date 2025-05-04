@@ -31,7 +31,6 @@
             git-absorb
             gnumake
             gnupg
-            go
             (google-cloud-sdk.withExtraComponents (
               with google-cloud-sdk.components;
               [
