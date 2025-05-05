@@ -63,8 +63,7 @@
             tree-sitter
           ];
 
-          # Necessary for using flakes on this system.
-          nix.settings.experimental-features = "nix-command flakes";
+          nix.enable = false;
 
           programs = {
             zsh = {
