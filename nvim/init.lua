@@ -201,7 +201,7 @@ require('lazy').setup {
       add_server{'clangd'}
       add_server{'gopls'}
       add_server{'lua_ls',        exe = 'lua-language-server' }
-      add_server{'nil_ls',        exe = 'nil' }
+      add_server{'nixd'}
       add_server{'rust_analyzer', exe = 'rust-analyzer' }
       add_server{'ts_ls',         exe = 'tsserver' }
       add_server{'yamlls',        exe = 'yaml-language-server',
