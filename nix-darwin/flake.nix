@@ -52,7 +52,7 @@
             luarocks
             mtr
             neovim
-            nil
+            nixd
             nixfmt-rfc-style
             nmap
             nodejs
