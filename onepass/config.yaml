@@ -1,0 +1,14 @@
+default_schema: '[A-Za-z0-9_-]{16}'
+aliases:
+  strong: '[A-Za-z0-9]{18}'
+  mobile: '[a-z0-9]{16}'
+  pin: '[0-9]{8}'
+  phrase: '[:word:](-[:word:]){4}'
+  apple: '[:Word:](-[:word:]){3}[0-9!-/]'
+sites:
+- name: apple.com
+  schema: apple
+- name: google.com
+  schema: strong
+- name: iphone.local
+  schema: pin
