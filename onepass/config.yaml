@@ -7,6 +7,7 @@ aliases:
   mobile: '[a-z0-9]{24}'
   phrase: '[:word:](-[:word:]){4}'
   pin: '[0-9]{8}'
+  strong: '[!-~]{20}'
 sites:
 - name: apple.com
   schema: apple
