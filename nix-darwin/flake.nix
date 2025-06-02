@@ -24,7 +24,6 @@
             bazelisk
             bazel-watcher
             bun
-            direnv
             fd
             fswatch
             fzf
@@ -68,6 +67,13 @@
           nix.enable = false;
 
           programs = {
+            direnv = {
+              enable = true;
+              nix-direnv = {
+                enable = true;
+                package = pkgs.nix-direnv;
+              };
+            };
             zsh = {
               enable = true;
               enableGlobalCompInit = false;
