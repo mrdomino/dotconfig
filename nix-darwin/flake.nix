@@ -62,6 +62,7 @@
             ripgrep
             stylua
             tree-sitter
+            watchman
           ];
 
           nix.enable = false;
