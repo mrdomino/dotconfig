@@ -25,6 +25,7 @@
             bazel-watcher
             bun
             fd
+            ffmpeg
             fswatch
             fzf
             git
