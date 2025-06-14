@@ -9,9 +9,6 @@ aliases:
   pin: '[0-9]{8}'
   strong: '[!-~]{20}'
 sites:
-- name: apple.com
-  schema: apple
-- name: google.com
-  schema: phrase
-- name: iphone.local
-  schema: pin
+  apple.com:    apple
+  google.com:   phrase
+  iphone.local: pin
