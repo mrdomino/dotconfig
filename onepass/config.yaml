@@ -1,4 +1,5 @@
 # See also: <https://github.com/mrdomino/onepass>
+words_path: words
 default_schema: mobile
 aliases:
   alnum: '[A-Za-z0-9]{18}'
