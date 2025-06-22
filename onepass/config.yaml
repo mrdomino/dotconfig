@@ -1,4 +1,5 @@
 # See also: <https://github.com/mrdomino/onepass>
+use_keyring: true
 words_path: words
 default_schema: mobile
 aliases:
@@ -11,7 +12,9 @@ aliases:
   strong: '[!-~]{20}'
 sites:
   apple.com:    apple
-  google.com:   phrase
+  google.com:
+    schema: phrase
+    increment: 1  # whoops
   iphone.local: pin
   my.local:     apple
   sw.local:     apple
