@@ -19,4 +19,5 @@ sites:
   my.local:     apple
   sw.local:     apple
 
-  pge.com: '[0-9][A-Za-z][A-Za-z0-9]{14}'
+  hilton.com: '[A-Z][a-z][0-9][a-z]{13}'
+  pge.com:    '[0-9][A-Za-z][A-Za-z0-9]{14}'
