@@ -101,9 +101,6 @@ _src() {
 [[ -x /Applications/Tailscale.app/Contents/MacOS/Tailscale ]] &&
   alias -g tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 
-[[ -x ~/.claude/local/claude ]] &&
-  alias claude=~/.claude/local/claude
-
 alias venv='source ~/venv/bin/activate'
 whence nvim >/dev/null 2>&1 && {
   alias vi=nvim
