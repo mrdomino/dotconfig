@@ -202,7 +202,17 @@ require('lazy').setup {
       add_server{'gopls'}
       add_server{'lua_ls',        exe = 'lua-language-server' }
       add_server{'nixd'}
-      add_server{'rust_analyzer', exe = 'rust-analyzer' }
+      add_server{'rust_analyzer', exe = 'rust-analyzer',
+        opts = {
+          settings = {
+            ['rust-analyzer'] = {
+              cargo = {
+                features = "all",
+              },
+            },
+          },
+        },
+      }
       add_server{'ts_ls',         exe = 'tsserver' }
       add_server{'yamlls',        exe = 'yaml-language-server',
         opts = {
