@@ -5,7 +5,7 @@ default_schema: mobile
 
 aliases:
   alnum: '[A-Za-z0-9]{18}'
-  apple: '[:Word:](-[:word:]){3}[0-9!-/]'
+  apple: '[:Word:][:word:]{3}[0-9!-/]'
   login: '[!-~]{12}'
   mobile: '[a-z0-9]{24}'
   phrase: '[:word:](-[:word:]){4}'
