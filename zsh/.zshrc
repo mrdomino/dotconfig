@@ -108,13 +108,13 @@ whence nvim >/dev/null 2>&1 && {
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
 
-! type bazel >/dev/null 2>&1 && whence bazelisk >/dev/null 2>&1 && {
+{ ! type bazel && whence bazelisk } >/dev/null 2>&1 && {
   alias bazel=bazelisk
 }
-! type fd >/dev/null 2>&1 && whence fdfind >/dev/null 2>&1 && {
+{ ! type fd && whence fdfind } >/dev/null 2>&1 && {
   alias fd=fdfind
 }
-! type kustomize >/dev/null 2>&1 && whence kubectl >/dev/null 2>&1 && {
+{ ! type kustomize && whence kubectl } >/dev/null 2>&1 && {
   alias kustomize='kubectl kustomize'
 }
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
