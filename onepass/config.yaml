@@ -1,6 +1,5 @@
 # See also: <https://github.com/mrdomino/onepass>
 use_keyring: true
-words_path: words
 default_schema: mobile
 
 aliases:
