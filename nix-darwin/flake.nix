@@ -2,20 +2,21 @@
   description = "Example nix-darwin system flake";
 
   inputs = {
-    nix-darwin.url = "github:LnL7/nix-darwin/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     {
       self,
       nix-darwin,
+      nixpkgs,
     }:
     let
       configuration =
         { pkgs, ... }:
         {
-          # List packages installed in system profile. To search by name, run:
-          # $ nix-env -qaP | grep wget
           environment.systemPackages = with pkgs; [
             age
             bazelisk
@@ -87,10 +88,10 @@
 
           system = {
             configurationRevision = self.rev or self.dirtyRev or null;
-            # Used for backwards compatibility, please read the changelog
-            # before changing.
+
+            # Used for backwards compatibility, please read the changelog before changing.
             # $ darwin-rebuild changelog
-            stateVersion = 5;
+            stateVersion = 6;
           };
 
           # The platform the configuration will be used on.
@@ -101,9 +102,7 @@
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#simple
       darwinConfigurations."simple" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-        ];
+        modules = [ configuration ];
       };
     };
 }
