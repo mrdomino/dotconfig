@@ -213,6 +213,7 @@ require('lazy').setup {
           },
         },
       }
+      add_server{'sourcekit',     exe = 'sourcekit-lsp' }
       add_server{'ts_ls',         exe = 'tsserver' }
       add_server{'yamlls',        exe = 'yaml-language-server',
         opts = {
