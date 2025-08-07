@@ -26,6 +26,7 @@
             ffmpeg
             fswatch
             fzf
+            gh
             git
             git-absorb
             gnumake
