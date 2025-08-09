@@ -12,10 +12,11 @@ aliases:
   strong: '[!-~]{20}'
 
 sites:
-  alpine.local: strong
-  iphone.local: pin
-  my.local:     apple
-  sw.local:     apple
+  alpine.local:  strong
+  windows.local: login
+  iphone.local:  pin
+  my.local:      apple
+  sw.local:      apple
 
   apple.com:   apple
   google.com:
