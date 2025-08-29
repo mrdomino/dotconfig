@@ -199,7 +199,25 @@ require('lazy').setup {
         end
       end
       add_server{'clangd'}
-      add_server{'gopls'}
+      add_server{'gopls',
+        opts = {
+          settings = {
+            gopls = {
+              workspaceFiles = {
+                "**/BUILD",
+                "**/WORKSPACE",
+                "**/*.{bzl,bazel}",
+              },
+              directoryFilters = {
+                "-bazel-bin",
+                "-bazel-out",
+                "-bazel-testlogs",
+                "-bazel-stairwell",
+              },
+            },
+          },
+        },
+      }
       add_server{'lua_ls',        exe = 'lua-language-server' }
       add_server{'nixd'}
       add_server{'rust_analyzer', exe = 'rust-analyzer',
