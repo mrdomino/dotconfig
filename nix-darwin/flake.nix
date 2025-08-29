@@ -20,7 +20,6 @@
           environment.systemPackages = with pkgs; [
             age
             bazelisk
-            bazel-watcher
             bun
             fd
             ffmpeg
