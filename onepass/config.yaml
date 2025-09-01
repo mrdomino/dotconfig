@@ -1,6 +1,7 @@
 # See also: <https://github.com/mrdomino/onepass>
 use_keyring: true
 default_schema: mobile
+include: [~/.onepass.local.yaml]
 
 aliases:
   alnum: '[A-Za-z0-9]{18}'
@@ -9,6 +10,7 @@ aliases:
   mobile: '[a-z0-9]{24}'
   phrase: '[:word:](-[:word:]){4}'
   pin: '[0-9]{8}'
+  finicky: '[a-z][A-Z][0-9!-/][a-z0-9]{15}'
   strong: '[!-~]{20}'
 
 sites:
