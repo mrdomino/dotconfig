@@ -1,7 +1,7 @@
 # See also: <https://github.com/mrdomino/onepass>
 use_keyring: true
 default_schema: mobile
-include: [~/.onepass.local.yaml]
+include: [~/Documents/Backup/onepass.yaml]
 
 aliases:
   alnum: '[A-Za-z0-9]{18}'
