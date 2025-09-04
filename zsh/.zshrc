@@ -101,6 +101,7 @@ _src() {
 [[ -x /Applications/Tailscale.app/Contents/MacOS/Tailscale ]] &&
   alias -g tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 
+alias goexports="rg '^func( \([^)]+\))? [A-Z]'"
 alias venv='source ~/venv/bin/activate'
 whence nvim >/dev/null 2>&1 && {
   alias vi=nvim
