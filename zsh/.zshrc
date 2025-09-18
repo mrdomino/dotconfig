@@ -100,6 +100,8 @@ _src() {
 
 [[ -x /Applications/Tailscale.app/Contents/MacOS/Tailscale ]] &&
   alias -g tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+[[ -x /Applications/Alacritty.app/Contents/MacOS/alacritty ]] &&
+  alias -g alacritty=/Applications/Alacritty.app/Contents/MacOS/alacritty
 
 alias goexports="rg '^func( \([^)]+\))? [A-Z]'"
 alias venv='source ~/venv/bin/activate'
