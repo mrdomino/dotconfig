@@ -288,10 +288,6 @@ if command -v direnv >/dev/null 2>&1; then
   fi
 fi
 
-# iTerm2 integration ⟬2
-export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=1
-source "$ZDOTDIR/iterm2.zsh"
-
 # hacky paranoid hostname verification ⟬1
 autoload -Uz sha256sum
 hostchecksum() {
