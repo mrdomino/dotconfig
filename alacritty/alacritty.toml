@@ -1,0 +1,8 @@
+[font]
+normal = { family = "MesloLGSDZ Nerd Font", style = "Regular" }
+size = 9
+
+[window]
+dimensions = { columns = 120, lines = 175 }
+option_as_alt = "OnlyLeft"
+resize_increments = true
