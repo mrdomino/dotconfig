@@ -1,9 +1,6 @@
 [general]
 import = ["local.toml"]
 
-[font]
-size = 9
-
 [window]
 option_as_alt = "OnlyLeft"
 resize_increments = true
