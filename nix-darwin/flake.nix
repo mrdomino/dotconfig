@@ -63,6 +63,7 @@
             ripgrep
             stylua
             texlive.combined.scheme-medium
+            tmux
             tree-sitter
             watchman
           ];
