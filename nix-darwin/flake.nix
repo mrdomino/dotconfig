@@ -43,6 +43,7 @@
               ]
             ))
             graphviz
+            helix
             htop
             jq
             k9s
@@ -61,6 +62,8 @@
             passage
             ripgrep
             stylua
+            texlive.combined.scheme-medium
+            tmux
             tree-sitter
             watchman
           ];

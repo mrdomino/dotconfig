@@ -25,7 +25,7 @@ fi
 typeset -U path
 path+=(/{usr/local/go,opt/cosmocc/current}/bin(N))
 path+=(~/bin)
-path+=(~/{go,.{cargo,bun,gem,nix-profile}}/bin(N))
+path+=(~/{go,.{cargo,bun,gem,local,nix-profile}}/bin(N))
 path+=(~/.local/share/bob/nvim-bin(N))
 path+=(~/venv/bin(N))
 path+=(~/.npm-packages/bin(N))
