@@ -24,7 +24,7 @@ sites:
   apple.com:   apple
   google.com:
     schema:    phrase
-    increment: 1  # whoops
+    increment: 1
   hilton.com:  '[A-Z][a-z][0-9][a-z]{13}'
   pge.com:     '[0-9][A-Za-z][A-Za-z0-9]{14}'
   prismhr.com: '[A-Z][a-z][0-9][A-Za-z0-9]{15}'
