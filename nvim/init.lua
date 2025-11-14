@@ -164,12 +164,10 @@ require('lazy').setup {
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      local lsp_defaults = require('lspconfig').util.default_config
-      lsp_defaults.capabilities = vim.tbl_deep_extend(
-        'force',
-        lsp_defaults.capabilities,
-        require('cmp_nvim_lsp').default_capabilities()
-      )
+      -- Set default capabilities for all LSP servers
+      vim.lsp.config('*', {
+        capabilities = require('cmp_nvim_lsp').default_capabilities()
+      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         desc = 'LSP actions',
@@ -253,7 +251,8 @@ require('lazy').setup {
       }
       add_server { 'zls' }
       for name, opts in pairs(servers) do
-        require('lspconfig')[name].setup(opts)
+        vim.lsp.config(name, opts)
+        vim.lsp.enable(name)
       end
     end,
   },
