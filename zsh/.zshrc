@@ -90,6 +90,9 @@ sw() {
 sw2() {
   src ${1:-depot2/src/stairwell}
 }
+sw3() {
+  src ${1:-depot3/src/stairwell}
+}
 swc() {
   src ${1:-stairwell-corp}
 }
