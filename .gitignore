@@ -4,8 +4,8 @@
 /configstore
 /dlv
 /gcloud
-/go/telemetry
 /google-chrome
+/go/telemetry
 /graphite
 /htop
 /iterm2
