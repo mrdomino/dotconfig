@@ -25,7 +25,7 @@ fpath+=(~/.{config,{nix-profile,local}/share}/zsh/site-functions(N))
   fpath+=($COSMO/tool/zsh(N))
   autoload -Uz mkofs mmake nproc
 }
-[[ -x "$(which rustup)" ]] &&
+command -v rustup >/dev/null 2>&1 &&
   fpath+=${$(rustup which rustc)%/*/*}/share/zsh/site-functions
 
 if [[ -d /opt/local/share/zsh/site-functions ]]; then
