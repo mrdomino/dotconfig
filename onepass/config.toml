@@ -1,0 +1,20 @@
+include = ["local.toml"]
+
+[global]
+use_keyring = true
+default_schema = "mobile"
+
+aliases = {
+    apple  = '{word:U}-{words:3:-}\d',
+    login  = '\w{12}',
+    mobile = '[a-z0-9]{16}',
+    phrase = '{words:5:-}'
+}
+
+[[site]]
+url = "apple.com"
+schema = "apple"
+
+[[site]]
+url = "google.com"
+schema = "phrase"
