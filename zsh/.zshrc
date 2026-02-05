@@ -108,21 +108,20 @@ _src() {
 
 alias goexports="rg '^func( \([^)]+\))? [A-Z]'"
 alias venv='source ~/venv/bin/activate'
-whence nvim >/dev/null 2>&1 && {
+whence -p nvim >/dev/null 2>&1 && {
   alias vi=nvim
   alias vim=nvim
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
 
-{ ! type bazel && whence bazelisk } >/dev/null 2>&1 && {
+{ ! type onepass && whence -p onepass2 } >/dev/null 2>&1 &&
+  alias onepass=onepass2
+{ ! type bazel && whence -p bazelisk } >/dev/null 2>&1 &&
   alias bazel=bazelisk
-}
-{ ! type fd && whence fdfind } >/dev/null 2>&1 && {
+{ ! type fd && whence -p fdfind } >/dev/null 2>&1 &&
   alias fd=fdfind
-}
-{ ! type kustomize && whence kubectl } >/dev/null 2>&1 && {
+{ ! type kustomize && whence -p kubectl } >/dev/null 2>&1 &&
   alias kustomize='kubectl kustomize'
-}
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias l="ls --color=auto"
