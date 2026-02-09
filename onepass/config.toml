@@ -4,7 +4,7 @@ include = ["local.toml"]
 use_keyring = true
 default_schema = "mobile"
 
-[global.aliases]
+[global.alias]
 apple  = '{word:U}-{words:3:-}\d'
 login  = '\w{12}'
 mobile = '[a-z0-9]{16}'
