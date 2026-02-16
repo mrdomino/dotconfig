@@ -5,7 +5,7 @@ use_keyring = true
 default_schema = "mobile"
 
 [global.alias]
-apple  = '{word:U}-{words:3:-}\d'
+apple  = '{words:4:-:U}\d'
 login  = '\w{12}'
 mobile = '[a-z0-9]{16}'
 phrase = '{words:5:-}'
