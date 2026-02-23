@@ -6,7 +6,8 @@ default_schema = "mobile"
 
 [global.alias]
 apple  = '{words:4:-:U}\d'
-login  = '\w{12}'
+finicky = '[[:lower:]][[:upper:]][[:digit:]][[:punct:]][[:print:]]{10}'
+login  = '[[:print:]]{12}'
 mobile = '[a-z0-9]{16}'
 phrase = '{words:5:-}'
 
