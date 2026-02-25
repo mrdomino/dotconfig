@@ -5,16 +5,18 @@ use_keyring = true
 default_schema = "mobile"
 
 [global.alias]
-apple  = '{words:4:-:U}\d'
+apple   = '{words:4:-:U}\d'
 finicky = '[[:lower:]][[:upper:]][[:digit:]][[:punct:]][[:print:]]{10}'
-login  = '[[:print:]]{12}'
-mobile = '[a-z0-9]{16}'
-phrase = '{words:5:-}'
+login   = '[[:print:]]{12}'
+mobile  = '[a-z0-9]{16}'
+# lowercase letters and the "123" iOS keyboard, but not the "#+=" iOS keyboard.
+mobile2 = "[!\"$&-),-;?@a-z]{14}"
+phrase  = '{words:5:-}'
 
 [[site]]
-url = "apple.com"
-schema = "apple"
+url="apple.com"
+schema="apple"
 
 [[site]]
-url = "google.com"
-schema = "phrase"
+url="google.com"
+schema="phrase"
