@@ -220,6 +220,8 @@ require('lazy').setup {
         }
         add_server{'lua_ls',        exe = 'lua-language-server' }
         add_server{'nixd'}
+        add_server{'basedpyright',  exe = 'basedpyright-langserver'}
+        add_server{'ruff'}
         add_server{'rust_analyzer', exe = 'rust-analyzer',
           opts = {
             settings = {
@@ -232,6 +234,7 @@ require('lazy').setup {
           },
         }
         add_server{'sourcekit',     exe = 'sourcekit-lsp' }
+        add_server{'starpls'}
         add_server{'ts_ls',         exe = 'tsserver' }
         add_server{'yamlls',        exe = 'yaml-language-server',
           opts = {
