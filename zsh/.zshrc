@@ -302,7 +302,7 @@ hostchecksum() {
   else
     host=${HOST%%.*}
   fi
-  echo -n "rHSUdV1IFRY6:$host" | sha256sum | cut -f1 -d' '
+  echo -n "FNEdG7WjtYIG:$host" | sha256sum | cut -f1 -d' '
 }
 if ! grep -Fxq "$(hostchecksum)" "$ZDOTDIR/hostnames"; then
   echo $'\e[31mzsh: strange hostname:' "$HOST"$'\e[0m' >&2
