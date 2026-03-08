@@ -1,0 +1,3 @@
+[Layout]
+Options=ctrl:nocaps,misc:typo,altwin:swap_lalt_lwin,lv3:switch,compose:ralt
+ResetOldOptions=true
