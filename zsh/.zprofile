@@ -1,7 +1,13 @@
+if (( ! ${+LANG} )); then
+  export LANG=en_US.UTF-8
+fi
+export LC_COLLATE=C
 export TZ=America/Los_Angeles
-export EDITOR=vim
+
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
+export EDITOR=vim
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/rc
+
 [[ -e ~/.bun ]] && export BUN_INSTALL=~/.bun
 [[ -e ~/.gem ]] && export GEM_HOME=~/.gem
 for d in ~{,/src}/cosmo; do
