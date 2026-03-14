@@ -12,6 +12,7 @@ mobile  = '[a-z0-9]{16}'
 # lowercase letters and the "123" iOS keyboard, but not the "#+=" iOS keyboard.
 mobile2 = "[!\"$&-),-;?@a-z]{14}"
 phrase  = '{words:5:-}'
+strong = '[[:print:]]{20}'
 
 [[site]]
 url="apple.com"
