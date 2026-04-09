@@ -81,20 +81,14 @@ src() {
     fi
   done
 }
-cosmo() {
-  src ${1:-cosmo}
+re() {
+  src ${1:-recon}
 }
-sw() {
-  src ${1:-depot/src/stairwell}
+re2() {
+  src ${1:-recon2/recon}
 }
-sw2() {
-  src ${1:-depot2/src/stairwell}
-}
-sw3() {
-  src ${1:-depot3/src/stairwell}
-}
-swc() {
-  src ${1:-stairwell-corp}
+re3() {
+  src ${1:-recon3/recon}
 }
 _src() {
   local paths=(~{,/src})(N)
