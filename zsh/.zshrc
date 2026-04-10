@@ -116,6 +116,8 @@ whence -p nvim >/dev/null 2>&1 && {
   alias fd=fdfind
 { ! type kustomize && whence -p kubectl } >/dev/null 2>&1 &&
   alias kustomize='kubectl kustomize'
+
+alias reauth="gcloud auth login --update-adc"
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias l="ls --color=auto"
