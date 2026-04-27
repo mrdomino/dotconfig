@@ -1,0 +1,21 @@
+case $# in
+  0)
+    DEVBOX=devbox
+    ;;
+  1)
+    DEVBOX=$1
+    shift
+    ;;
+  *)
+    echo >&2 'usage: reauth [devbox]'
+    return 1
+esac
+
+gcloud auth login --update-adc || return 1
+
+rsync -avzR \
+  ~/.config/gcloud/./access_tokens.db \
+  ~/.config/gcloud/./application_default_credentials.json \
+  ~/.config/gcloud/./credentials.db \
+  ~/.config/gcloud/./legacy_credentials \
+  "$DEVBOX":~/.config/gcloud/

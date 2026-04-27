@@ -117,7 +117,6 @@ whence -p nvim >/dev/null 2>&1 && {
 { ! type kustomize && whence -p kubectl } >/dev/null 2>&1 &&
   alias kustomize='kubectl kustomize'
 
-alias reauth="gcloud auth login --update-adc"
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias l="ls --color=auto"
@@ -129,7 +128,7 @@ c() {
 }
 alias :q=sl
 
-autoload -Uz is-at-least wol zf_cat
+autoload -Uz is-at-least reauth wol zf_cat
 
 # writing folder ⟬2
 # cf. https://github.com/mrdomino/writing-scripts
