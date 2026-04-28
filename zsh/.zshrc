@@ -108,14 +108,18 @@ whence -p nvim >/dev/null 2>&1 && {
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
 
-{ ! type onepass && whence -p onepass2 } >/dev/null 2>&1 &&
-  alias onepass=onepass2
+{ ! type onepass && whence -p onepass3 } >/dev/null 2>&1 &&
+  alias onepass=onepass3
 { ! type bazel && whence -p bazelisk } >/dev/null 2>&1 &&
   alias bazel=bazelisk
 { ! type fd && whence -p fdfind } >/dev/null 2>&1 &&
   alias fd=fdfind
 { ! type kustomize && whence -p kubectl } >/dev/null 2>&1 &&
   alias kustomize='kubectl kustomize'
+
+fzp() {
+  onepass "$@" -- "$(onepass -p | fzf)"
+}
 
 alias reauth="gcloud auth login --update-adc"
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
