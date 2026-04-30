@@ -118,7 +118,12 @@ whence -p nvim >/dev/null 2>&1 && {
   alias kustomize='kubectl kustomize'
 
 fzp() {
-  onepass "$@" -- "$(onepass -p | fzf)"
+  local url=$(onepass -p | fzf --print-query | tail -1)
+  if [[ -n "$url" ]]; then
+    onepass "$@" -- "$url"
+  else
+    return 1
+  fi
 }
 
 alias reauth="gcloud auth login --update-adc"
