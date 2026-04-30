@@ -1,3 +1,5 @@
+local DEVBOX
+
 case $# in
   0)
     DEVBOX=devbox
