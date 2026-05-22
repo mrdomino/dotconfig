@@ -1,8 +1,10 @@
 include = ["local.toml"]
 
 [global]
-use_keyring = true
 default_schema = "mobile"
+
+[global.keyring]
+seed = "cache"
 
 [global.alias]
 apple   = '{words:4:-:U}\d'
