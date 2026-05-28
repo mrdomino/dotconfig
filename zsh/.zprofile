@@ -44,3 +44,22 @@ manpath+=(~/.local/share/man(N))
 export MANPATH
 
 [[ -x $(which nvim) ]] && EDITOR=nvim
+
+# Use a stable per-tmux-session auth sock. This gets refreshed with a
+# client-attached hook in tmux.conf, so it stays up to date with the most
+# recent client to attach to this tmux session.
+#
+# Multiplayer tmux attach is not supported.
+if [[ -n $TMUX ]]; then
+  local sid=$(tmux display -p '#{session_id}' | tr -d '$')
+  link="$HOME/.ssh/agent-tmux-$sid.sock"
+
+  local real=$(tmux show-environment SSH_AUTH_SOCK 2>/dev/null)
+  case "$real" in
+    SSH_AUTH_SOCK=?*) real=${real#SSH_AUTH_SOCK=} ;;
+    *)                real=$SSH_AUTH_SOCK ;;
+  esac
+  [ -S "$real" ] && [ "$real" != "$link" ] && ln -sfn "$real" "$link"
+
+  export SSH_AUTH_SOCK="$link"
+fi

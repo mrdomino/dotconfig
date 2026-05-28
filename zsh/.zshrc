@@ -258,18 +258,6 @@ function reset_broken_terminal () {
 }
 add-zsh-hook -Uz precmd reset_broken_terminal
 
-if [[ -n $TMUX ]]; then
-  function refresh_sock () {
-    local sock=$(tmux show-environment SSH_AUTH_SOCK)
-    if [[ $sock[1] = '-' ]]; then
-      unset SSH_AUTH_SOCK
-    else
-      export $sock
-    fi
-  }
-  add-zsh-hook -Uz preexec refresh_sock
-fi
-
 TRAPUSR1() { rehash }
 
 if command -v direnv >/dev/null 2>&1; then
