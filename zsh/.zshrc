@@ -77,7 +77,8 @@ src() {
   for d in ~{/src,}; do
     if [[ -e "$d/$1" ]]; then
       cd "$d/$1"
-      break
+      git status
+      return
     fi
   done
 }
@@ -89,6 +90,9 @@ re2() {
 }
 re3() {
   src ${1:-recon3/recon}
+}
+re4() {
+  src ${1:-recon4/recon}
 }
 _src() {
   local paths=(~{,/src})(N)
