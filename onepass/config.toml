@@ -23,3 +23,7 @@ schema="apple"
 [[site]]
 url="google.com"
 schema="phrase"
+
+[[site]]
+url="sonic.net"
+schema="{words}"
