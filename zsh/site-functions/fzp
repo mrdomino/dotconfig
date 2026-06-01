@@ -1,0 +1,6 @@
+local url=$(onepass -p | fzf --print-query | tail -1)
+if [[ -n "$url" ]]; then
+  onepass "$@" -- "$url"
+else
+  return 1
+fi

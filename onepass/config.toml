@@ -1,8 +1,10 @@
 include = ["local.toml"]
 
 [global]
-use_keyring = true
 default_schema = "mobile"
+
+[global.keyring]
+seed = "cache"
 
 [global.alias]
 apple   = '{words:4:-:U}\d'
@@ -10,9 +12,9 @@ finicky = '[[:lower:]][[:upper:]][[:digit:]][[:punct:]][[:print:]]{10}'
 login   = '[[:print:]]{12}'
 mobile  = '[a-z0-9]{16}'
 # lowercase letters and the "123" iOS keyboard, but not the "#+=" iOS keyboard.
-mobile2 = "[!\"$&-),-;?@a-z]{14}"
+mobile2 = '[!"$&-),-;?@a-z]{14}'
 phrase  = '{words:5:-}'
-strong = '[[:print:]]{20}'
+strong  = '[[:print:]]{20}'
 
 [[site]]
 url="apple.com"
@@ -21,3 +23,7 @@ schema="apple"
 [[site]]
 url="google.com"
 schema="phrase"
+
+[[site]]
+url="sonic.net"
+schema="{words}"

@@ -81,20 +81,14 @@ src() {
     fi
   done
 }
-cosmo() {
-  src ${1:-cosmo}
+re() {
+  src ${1:-recon}
 }
-sw() {
-  src ${1:-depot/src/stairwell}
+re2() {
+  src ${1:-recon2/recon}
 }
-sw2() {
-  src ${1:-depot2/src/stairwell}
-}
-sw3() {
-  src ${1:-depot3/src/stairwell}
-}
-swc() {
-  src ${1:-stairwell-corp}
+re3() {
+  src ${1:-recon3/recon}
 }
 _src() {
   local paths=(~{,/src})(N)
@@ -114,14 +108,15 @@ whence -p nvim >/dev/null 2>&1 && {
   alias vimconf='nvim ~/.config/nvim/init.lua'
 }
 
-{ ! type onepass && whence -p onepass2 } >/dev/null 2>&1 &&
-  alias onepass=onepass2
+{ ! type onepass && whence -p onepass3 } >/dev/null 2>&1 &&
+  alias onepass=onepass3
 { ! type bazel && whence -p bazelisk } >/dev/null 2>&1 &&
   alias bazel=bazelisk
 { ! type fd && whence -p fdfind } >/dev/null 2>&1 &&
   alias fd=fdfind
 { ! type kustomize && whence -p kubectl } >/dev/null 2>&1 &&
   alias kustomize='kubectl kustomize'
+
 alias zprofile="edit_zsh $ZDOTDIR/.zprofile -l"
 alias zshrc="edit_zsh $ZDOTDIR/.zshrc"
 alias l="ls --color=auto"
@@ -133,7 +128,7 @@ c() {
 }
 alias :q=sl
 
-autoload -Uz is-at-least wol zf_cat
+autoload -Uz fzp is-at-least reauth wol zf_cat
 
 # writing folder ⟬2
 # cf. https://github.com/mrdomino/writing-scripts
