@@ -45,6 +45,7 @@
             graphviz
             helix
             htop
+            imagemagick
             jq
             k9s
             lua-language-server
