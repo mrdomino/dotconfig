@@ -77,7 +77,8 @@ src() {
   for d in ~{/src,}; do
     if [[ -e "$d/$1" ]]; then
       cd "$d/$1"
-      break
+      git status
+      return
     fi
   done
 }
@@ -89,6 +90,9 @@ re2() {
 }
 re3() {
   src ${1:-recon3/recon}
+}
+re4() {
+  src ${1:-recon4/recon}
 }
 _src() {
   local paths=(~{,/src})(N)
@@ -253,18 +257,6 @@ function reset_broken_terminal () {
   printf '%b' '\e[0m\e(B\e)0\017\e[?5l\e7\e[0;0r\e8'
 }
 add-zsh-hook -Uz precmd reset_broken_terminal
-
-if [[ -n $TMUX ]]; then
-  function refresh_sock () {
-    local sock=$(tmux show-environment SSH_AUTH_SOCK)
-    if [[ $sock[1] = '-' ]]; then
-      unset SSH_AUTH_SOCK
-    else
-      export $sock
-    fi
-  }
-  add-zsh-hook -Uz preexec refresh_sock
-fi
 
 TRAPUSR1() { rehash }
 
