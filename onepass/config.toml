@@ -8,6 +8,8 @@ seed = "cache"
 
 [global.alias]
 apple   = '{words:4:-:U}\d'
+dumb    = '[A-Z][a-z][0-9][!#-&(-*@^][!#-&(-*0-9@-[^a-z]{8}'
+ecovacs = '[A-Z][a-z][0-9][ !#%&*~¥][[:alnum:]]{8}'
 finicky = '[[:lower:]][[:upper:]][[:digit:]][[:punct:]][[:print:]]{10}'
 login   = '[[:print:]]{12}'
 mobile  = '[a-z0-9]{16}'
