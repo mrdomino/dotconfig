@@ -29,6 +29,7 @@ if [[ $0[1] = - && $SHELL != **/zsh* ]]; then
 fi
 
 typeset -U path
+path+=(/opt/nvim-linux-x86_64/bin(N))
 path+=(/{usr/local/go,opt/cosmocc/current}/bin(N))
 path+=(~/bin)
 path+=(~/{go,.{cargo,bun,gem,local,nix-profile}}/bin(N))
