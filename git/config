@@ -9,6 +9,7 @@
 [alias]
 	co = checkout
 	dc = diff --cached
+	fup = fetch up --prune
 	rb = rebase
 	lg = log --graph --decorate
 	lga = log --graph --decorate --all
