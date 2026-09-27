@@ -107,6 +107,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
           or '<Cmd>lua vim.lsp.completion.get()<CR>'
       end, { buffer = ev.buf, expr = true })
     end
+    vim.keymap.set('i', '<BS>', function()
+      return vim.fn.pumvisible() == 1
+          and '<BS><Cmd>lua vim.lsp.completion.get()<CR>'
+        or '<BS>'
+    end, { buffer = ev.buf, expr = true })
     vim.keymap.set('i', '<CR>', function()
       return vim.fn.complete_info({ 'selected' }).selected >= 0 and '<C-y>'
         or '<CR>'
