@@ -10,6 +10,7 @@ vim.o.shiftwidth = 2
 vim.o.expandtab = true
 vim.o.breakindent = true
 vim.o.mouse = ''
+vim.o.completeopt = 'menuone,noinsert,popup,fuzzy'
 vim.g.mapleader = ';'
 
 vim.pack.add {
@@ -100,13 +101,35 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gD', vim.lsp.buf.declaration)
     map('go', vim.lsp.buf.type_definition)
     map('gs', vim.lsp.buf.signature_help)
+    for _, key in ipairs { '<C-n>', '<C-p>' } do
+      vim.keymap.set('i', key, function()
+        return vim.fn.pumvisible() == 1 and key
+          or '<Cmd>lua vim.lsp.completion.get()<CR>'
+      end, { buffer = ev.buf, expr = true })
+    end
+    vim.keymap.set('i', '<CR>', function()
+      return vim.fn.complete_info({ 'selected' }).selected >= 0 and '<C-y>'
+        or '<CR>'
+    end, { buffer = ev.buf, expr = true })
+    for key, scroll in pairs { ['<C-u>'] = '4\25', ['<C-d>'] = '4\5' } do
+      vim.keymap.set('i', key, function()
+        local win = vim.fn.complete_info().preview_winid
+        if win and vim.api.nvim_win_is_valid(win) then
+          vim.api.nvim_win_call(win, function()
+            vim.cmd.normal { scroll, bang = true }
+          end)
+        else
+          vim.api.nvim_feedkeys(vim.keycode(key), 'n', false)
+        end
+      end, { buffer = ev.buf })
+    end
   end,
 })
 
 local js = { 'biome', 'prettier', stop_after_first = true }
 require('conform').setup {
   formatters_by_ft = {
-    go = { 'goimports' },
+    go = { 'goimports', lsp_format = 'fallback' },
     javascript = js,
     javascriptreact = js,
     python = { lsp_format = 'fallback' },
