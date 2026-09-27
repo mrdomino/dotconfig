@@ -1,327 +1,125 @@
 vim.cmd.syntax 'off'
 vim.cmd.colorscheme 'habamax'
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.list = true
-vim.opt.listchars = { tab = '→ ', trail = '·', nbsp = '␣' }
-vim.opt.showbreak = '↪ '
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.breakindent = true
-vim.opt.mouse = ''
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.list = true
+vim.o.listchars = 'tab:→ ,trail:·,nbsp:␣'
+vim.o.showbreak = '↪ '
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.expandtab = true
+vim.o.breakindent = true
+vim.o.mouse = ''
 vim.g.mapleader = ';'
-vim.g.localleader = '\\'
 
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.uv.fs_stat(lazypath) then
-  vim.fn.system {
-    'git', 'clone', '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git', '--branch=stable', lazypath,
-  }
-end
-vim.opt.rtp:prepend(lazypath)
-
-require('lazy').setup {
-  spec = {
-    {
-      'nvim-treesitter/nvim-treesitter',
-      branch = 'master',
-      build = ':TSUpdate',
-      config = function()
-        require('nvim-treesitter.configs').setup {
-          auto_install = vim.fn.executable 'tree-sitter' ~= 0,
-          ensure_installed = {
-            'bash',
-            'beancount',
-            'c',
-            'comment',
-            'cpp',
-            'css',
-            'git_rebase',
-            'gitcommit',
-            'go',
-            'gomod',
-            'gosum',
-            'gotmpl',
-            'gowork',
-            'html',
-            'javascript',
-            'json',
-            'lua',
-            'markdown',
-            'python',
-            'ruby',
-            'rust',
-            'sql',
-            'tsx',
-            'typescript',
-            'vim',
-            'vimdoc',
-          },
-          ignore_install = {},
-          indent = { enable = true },
-          modules = {},
-          sync_install = false,
-        }
-      end,
-      keys = {
-        {
-          '<localleader>th',
-          function()
-            vim.cmd.TSBufToggle 'highlight'
-          end,
-          desc = 'Toggle highlighting',
-        },
-      },
-      lazy = false,
-    },
-    {
-      'nvim-telescope/telescope.nvim',
-      branch = '0.1.x',
-      cmd = 'Telescope',
-      dependencies = 'nvim-lua/plenary.nvim',
-      keys = {
-        { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'find files' },
-        { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = 'live grep' },
-      },
-      opts = {
-        defaults = {
-          layout_strategy = 'vertical',
-        },
-      },
-    },
-    {
-      'mbbill/undotree',
-      cmd = { 'UndotreeToggle' },
-      keys = {
-        { '<leader>u', vim.cmd.UndotreeToggle, desc = 'undo tree' },
-      },
-    },
-
-    {
-      'folke/which-key.nvim',
-      event = 'VeryLazy',
-      init = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 300
-      end,
-      opts = {},
-    },
-
-    {
-      'folke/lazydev.nvim',
-      ft = 'lua',
-      opts = {
-        library = {
-          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-        },
-      },
-    },
-
-    {
-      'hrsh7th/nvim-cmp',
-      dependencies = {
-        {
-          'L3MON4D3/LuaSnip',
-          version = 'v2.*',
-          build = 'make install_jsregexp',
-        },
-      },
-      event = 'InsertEnter',
-      config = function()
-        local cmp = require 'cmp'
-
-        cmp.setup {
-          preselect = 'item',
-          completion = {
-            autocomplete = false,
-            completeopt = 'menu,menuone,noinsert',
-          },
-          sources = {
-            { name = 'lazydev', group_index = 0 },
-            { name = 'nvim_lsp' },
-          },
-          mapping = cmp.mapping.preset.insert {
-            ['<CR>'] = cmp.mapping.confirm { select = false },
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-d>'] = cmp.mapping.scroll_docs(4),
-          },
-          snippet = {
-            expand = function(args)
-              require('luasnip').lsp_expand(args.body)
-            end,
-          },
-        }
-      end,
-    },
-
-    {
-      'neovim/nvim-lspconfig',
-      cmd = 'LspInfo',
-      event = { 'BufReadPre', 'BufNewFile' },
-      dependencies = {
-        { 'j-hui/fidget.nvim', opts = {} },
-        'hrsh7th/cmp-nvim-lsp',
-      },
-      config = function()
-        -- Set default capabilities for all LSP servers
-        vim.lsp.config('*', {
-          capabilities = require('cmp_nvim_lsp').default_capabilities()
-        })
-
-        vim.api.nvim_create_autocmd('LspAttach', {
-          desc = 'LSP actions',
-          callback = function(event)
-            local opts = { buffer = event.buf }
-            vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-            vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-            vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-            vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-            vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-            vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-            vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-            vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-
-            vim.keymap.set('n', '<localleader>ls', '<cmd>LspStop<cr>')
-            vim.keymap.set('n', '<localleader>lt', '<cmd>LspStart<cr>')
-          end,
-        })
-
-        local servers = {}
-        local add_server = function(args)
-          local name = args[1]
-          local exe = args.exe or name
-          local opts = args.opts or {}
-          if vim.fn.executable(exe) ~= 0 then
-            servers[name] = opts
-          end
-        end
-        add_server{'clangd'}
-        add_server{'gopls',
-          opts = {
-            settings = {
-              gopls = {
-                workspaceFiles = {
-                  "**/BUILD",
-                  "**/WORKSPACE",
-                  "**/*.{bzl,bazel}",
-                },
-                directoryFilters = {
-                  "-bazel-bin",
-                  "-bazel-out",
-                  "-bazel-testlogs",
-                  "-bazel-stairwell",
-                },
-              },
-            },
-          },
-        }
-        add_server{'lua_ls',        exe = 'lua-language-server' }
-        add_server{'nixd'}
-        add_server{'basedpyright',  exe = 'basedpyright-langserver'}
-        add_server{'ruff'}
-        add_server{'rust_analyzer', exe = 'rust-analyzer',
-          opts = {
-            settings = {
-              ['rust-analyzer'] = {
-                cargo = {
-                  features = "all",
-                },
-              },
-            },
-          },
-        }
-        add_server{'sourcekit',     exe = 'sourcekit-lsp' }
-        add_server{'starpls'}
-        add_server{'ts_ls',         exe = 'tsserver' }
-        add_server{'yamlls',        exe = 'yaml-language-server',
-          opts = {
-            settings = {
-              yaml = {
-                schemas = {
-                  kubernetes = 'k8s-*.yaml',
-                  ['http://json.schemastore.org/github-workflow'] = '.github/workflows/*',
-                  ['http://json.schemastore.org/github-action'] = '.github/action.{yml,yaml}',
-                  ['http://json.schemastore.org/ansible-stable-2.9'] = 'roles/tasks/**/*.{yml,yaml}',
-                  ['http://json.schemastore.org/prettierrc'] = '.prettierrc.{yml,yaml}',
-                  ['http://json.schemastore.org/kustomization'] = 'kustomization.{yml,yaml}',
-                  ['http://json.schemastore.org/chart'] = 'Chart.{yml,yaml}',
-                  ['http://json.schemastore.org/circleciconfig'] = '.circleci/**/*.{yml,yaml}',
-                },
-              },
-            },
-          },
-        }
-        add_server { 'zls' }
-        for name, opts in pairs(servers) do
-          vim.lsp.config(name, opts)
-          vim.lsp.enable(name)
-        end
-      end,
-    },
-
-    {
-      'pmizio/typescript-tools.nvim',
-      config = function()
-        require('typescript-tools').setup {}
-        vim.keymap.set('n', '<leader>tso', '<cmd>TSToolsOrganizeImports<cr>')
-        vim.keymap.set('n', '<leader>tss', '<cmd>TSToolsSortImports<cr>')
-        vim.keymap.set('n', '<leader>tsi', '<cmd>TSToolsRemoveUnusedImports<cr>')
-        vim.keymap.set('n', '<leader>tsu', '<cmd>TSToolsRemoveUnused<cr>')
-        vim.keymap.set('n', '<leader>tsf', '<cmd>TSToolsFixAll<cr>')
-        vim.keymap.set('n', '<leader>tsd', '<cmd>TSToolsGoToSourceDefinition<cr>')
-        vim.keymap.set('n', '<leader>tsr', '<cmd>TSToolsRenameFile<cr>')
-      end,
-      dependencies = {
-        'neovim/nvim-lspconfig',
-        'nvim-lua/plenary.nvim',
-      },
-      ft = {
-        'javascript',
-        'javascript.jsx',
-        'javascriptreact',
-        'typescript',
-        'typescript.tsx',
-        'typescriptreact',
-      },
-    },
-
-    {
-      'ray-x/go.nvim',
-      dependencies = {
-        'ray-x/guihua.lua',
-        'neovim/nvim-lspconfig',
-        'nvim-treesitter/nvim-treesitter',
-      },
-      config = function()
-        require('go').setup()
-      end,
-      event = { 'CmdlineEnter' },
-      ft = { 'go', 'gomod' },
-      build = ':lua require("go.install").update_all()',
-    },
-  },
+vim.pack.add {
+  'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/stevearc/conform.nvim',
 }
 
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufWinEnter' }, {
-  pattern = '*',
-  group = vim.api.nvim_create_augroup('TextColumn', {}),
-  callback = function()
-    if (vim.bo.textwidth or 0) > 0 then
-      vim.wo.colorcolumn = '+1'
-    else
-      vim.wo.colorcolumn = '81'
+vim.cmd.packadd 'nvim.undotree'
+vim.keymap.set('n', '<leader>u', vim.cmd.Undotree)
+
+if vim.fn.executable 'rg' == 1 then
+  vim.o.grepprg = 'rg --vimgrep'
+  function _G.RgFind(arg)
+    local files = vim.fn.systemlist 'rg --files'
+    return arg == '' and files or vim.fn.matchfuzzy(files, arg)
+  end
+  vim.o.findfunc = 'v:lua.RgFind'
+end
+vim.keymap.set('n', '<leader>ff', ':find ')
+vim.keymap.set('n', '<leader>fg', ':silent grep ')
+vim.api.nvim_create_autocmd('QuickFixCmdPost', {
+  pattern = 'grep',
+  command = 'cwindow',
+})
+
+vim.diagnostic.config {
+  virtual_text = { current_line = true },
+  severity_sort = true,
+}
+vim.keymap.set('n', '<leader>d', vim.diagnostic.setloclist)
+
+vim.lsp.config('gopls', {
+  settings = {
+    gopls = {
+      workspaceFiles = { '**/BUILD', '**/WORKSPACE', '**/*.{bzl,bazel}' },
+      directoryFilters = {
+        '-bazel-bin',
+        '-bazel-out',
+        '-bazel-testlogs',
+        '-bazel-stairwell',
+      },
+    },
+  },
+})
+vim.lsp.config('lua_ls', {
+  settings = {
+    Lua = {
+      runtime = { version = 'LuaJIT' },
+      workspace = { library = { vim.env.VIMRUNTIME } },
+    },
+  },
+})
+vim.lsp.config('rust_analyzer', {
+  settings = { ['rust-analyzer'] = { cargo = { features = 'all' } } },
+})
+vim.lsp.config('yamlls', {
+  cmd = { 'yaml-language-server', '--stdio' },
+  settings = { yaml = { schemas = { kubernetes = 'k8s-*.yaml' } } },
+})
+for _, name in ipairs {
+  'basedpyright',
+  'clangd',
+  'gopls',
+  'lua_ls',
+  'nixd',
+  'ruff',
+  'rust_analyzer',
+  'sourcekit',
+  'starpls',
+  'vtsls',
+  'yamlls',
+  'zls',
+} do
+  if vim.fn.executable(vim.lsp.config[name].cmd[1]) == 1 then
+    vim.lsp.enable(name)
+  end
+end
+vim.keymap.set('n', '<leader>ls', '<cmd>lsp disable<cr>')
+vim.keymap.set('n', '<leader>lt', '<cmd>lsp enable<cr>')
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    vim.lsp.completion.enable(true, ev.data.client_id, ev.buf)
+    local function map(lhs, rhs)
+      vim.keymap.set('n', lhs, rhs, { buffer = ev.buf })
     end
+    map('gd', vim.lsp.buf.definition)
+    map('gD', vim.lsp.buf.declaration)
+    map('go', vim.lsp.buf.type_definition)
+    map('gs', vim.lsp.buf.signature_help)
   end,
 })
 
-local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.go',
+local js = { 'biome', 'prettier', stop_after_first = true }
+require('conform').setup {
+  formatters_by_ft = {
+    go = { 'goimports' },
+    javascript = js,
+    javascriptreact = js,
+    python = { lsp_format = 'fallback' },
+    rust = { lsp_format = 'fallback' },
+    typescript = js,
+    typescriptreact = js,
+  },
+  formatters = { biome = { require_cwd = true } },
+  format_on_save = true,
+}
+
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufWinEnter' }, {
   callback = function()
-    require('go.format').goimports()
+    vim.wo.colorcolumn = vim.bo.textwidth > 0 and '+1' or '81'
   end,
-  group = format_sync_grp,
 })

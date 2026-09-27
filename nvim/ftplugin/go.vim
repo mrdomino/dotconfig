@@ -1,2 +1,1 @@
-setlocal noexpandtab
-setlocal linebreak
+setlocal tabstop=4
