@@ -27,6 +27,7 @@
             ffmpeg
             fswatch
             fzf
+            ghostty-bin
             git
             git-absorb
             gnumake
