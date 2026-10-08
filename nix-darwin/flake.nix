@@ -19,6 +19,7 @@
         {
           environment.systemPackages = with pkgs; [
             age
+            alacritty
             autossh
             bazelisk
             bazel-watcher
