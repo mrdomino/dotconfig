@@ -7,15 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "assistant": {
+  "edit_predictions": {
+    "provider": "none"
+  },
+  "agent": {
     "default_model": {
       "provider": "anthropic",
       "model": "claude-3-7-sonnet-latest"
     },
-    "version": "2"
-  },
-  "features": {
-    "edit_prediction_provider": "none"
   },
   "tab_size": 2,
   "telemetry": {
